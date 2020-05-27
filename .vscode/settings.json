@@ -1,0 +1,38 @@
+{
+	"debug.inlineValues": true,
+	"debug.internalConsoleOptions": "openOnFirstSessionStart",
+	"debug.openDebug": "openOnFirstSessionStart",
+	"debug.openExplorerOnEnd": true,
+	"debug.showInStatusBar": "onFirstSessionStart",
+	"editor.formatOnSave": true,
+	"files.associations": {
+		"*.md": "markdown"
+	},
+	"[markdown]": {
+		"editor.formatOnSave": false
+	},
+	"editor.insertSpaces": false,
+	"editor.codeActionsOnSave": {
+		// "source.organizeImports": true
+	},
+	"files.insertFinalNewline": true,
+	"git.autofetch": true,
+	"npm.packageManager": "yarn",
+	"search.exclude": {
+		"**/**/node_modules": true,
+		"**/dist": true,
+		"**/node_modules": true
+	},
+	"tslint.alwaysShowRuleFailuresAsWarnings": true,
+	"tslint.autoFixOnSave": true,
+	"tslint.packageManager": "yarn",
+	"typescript.autoClosingTags": true,
+	"typescript.implementationsCodeLens.enabled": false,
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.referencesCodeLens.enabled": false,
+	"typescript.reportStyleChecksAsWarnings": true,
+	"typescript.suggest.autoImports": false,
+	"typescript.tsdk": "./node_modules/typescript/lib",
+	"typescript.updateImportsOnFileMove.enabled": "never",
+	"typescript.validate.enable": true
+}

@@ -1,0 +1,18 @@
+{
+	"defaultSeverity": "warning",
+	"extends": [
+		"tslint:latest",
+		"tslint-eslint-rules",
+		"tslint-react",
+		"tslint-config-prettier"
+	],
+	"linterOptions": {
+		"exclude": ["**/*.json"]
+	},
+	"rules": {
+		"jsx-boolean-value": [true, "never"],
+		"max-classes-per-file": false,
+		"no-implicit-dependencies": [false, "dev"],
+		"no-submodule-imports": false
+	}
+}
