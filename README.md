@@ -10,12 +10,26 @@
 
 Fork this repository on GitHub and clone your forked origin to your desktop.
 
-Add upstream repository:
+### Add upstream repository
 
 ```shell
 cd bm1
 
 git remote add upstream https://github.com/burnminute/bm1.git
+```
+
+### Run rebase fns against upstream/master
+
+- Add this to `.profile`, etc for an uber rebase.
+
+```shell
+function y-r() {
+  git checkout master ;
+  git fetch --prune upstream ;
+  git rebase upstream/master ;
+  git push --force origin master ;
+  yarn install;
+}
 ```
 
 ---
