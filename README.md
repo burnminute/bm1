@@ -20,17 +20,26 @@ git remote add upstream https://github.com/burnminute/bm1.git
 
 ### Run rebase fns against upstream/master
 
-- Add this to `.profile`, etc for an uber rebase.
+- Add this bash script to your `.profile`, etc for an uber rebase against the main upstream fork, with an optional target branch (defaults to **"master"**).
 
-```shell
-function y-r() {
-  git checkout master ;
-  git fetch --prune upstream ;
-  git rebase upstream/master ;
-  git push --force origin master ;
-  yarn install;
-}
-```
+  ```shell
+  function y-r () {
+    local thebranch="master"
+    if [ $1 ]
+    then  
+      thebranch=$1
+    fi
+    echo the target branch is $thebranch
+    git checkout $thebranch ;
+    git fetch --prune upstream ;
+    git rebase upstream/$thebranch ;
+    git push --force origin $thebranch ;
+    yarn install;
+  }
+  ```  
+
+  > Example:
+  `$ y-r "my-new-branch"`
 
 ---
 
