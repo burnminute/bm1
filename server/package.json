@@ -1,0 +1,19 @@
+{
+  "name": "bm-server",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.16"
+  },
+  "devDependencies": {
+    "@types/isomorphic-fetch": "0.0.35",
+    "@types/node": "13.7.2",
+    "ts-node-dev": "1.0.0-pre.44",
+    "tsutils": "3.17.1",
+    "typescript": "3.7.5"
+  }
+}
