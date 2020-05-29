@@ -5,6 +5,7 @@
 ## spec links
 
 - [Burnminute - Basic Flow](https://github.com/burnminute/assets/blob/master/docs/basic-flow.md)
+- [Initial project setup (+ TS)](https://medium.com/@beaucarnes/learn-the-mern-stack-by-building-an-exercise-tracker-mern-tutorial-59c13c1237a1)
 
 ## git setup
 
