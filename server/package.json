@@ -15,5 +15,8 @@
     "ts-node-dev": "1.0.0-pre.44",
     "tsutils": "3.17.1",
     "typescript": "3.7.5"
+  },
+  "scripts": {
+    "start": "yarn --cwd src nodemon index"
   }
 }
