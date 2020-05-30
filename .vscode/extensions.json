@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+		"apollographql.vscode-apollo",
+		"codezombiech.gitignore",
+		"coenraads.bracket-pair-colorizer-2",
+		"DavidAnson.vscode-markdownlint",
+		"eg2.tslint",
+		"esbenp.prettier-vscode",
+		"mikestead.dotenv",
+		"msjsdiag.debugger-for-chrome",
+		"PeterJausovec.vscode-docker",
+		"richie5um2.vscode-sort-json"
+	]
+}
