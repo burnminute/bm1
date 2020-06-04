@@ -2,17 +2,8 @@
 import React, { FC } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { ListWrapper } from "../../components/layout";
 
-// export const ExerciseList: FC = () => {
-// 	const render = () => {
-// 		return (
-// 			<div>
-// 				<p>You are on the Exercises List component!</p>
-// 			</div>
-// 		)
-// 	}
-// 	return render();
-// }
 interface IExercise {
 	username: string;
 	description: string;
@@ -45,7 +36,7 @@ export const ExerciseList: FC = () => {
 		description,
 		duration,
 		date }: IExercise) => (
-			<div key={description}>
+			<ListWrapper key={description}>
 				<p>
 					{username}: {description}
 					<br />
@@ -53,6 +44,6 @@ export const ExerciseList: FC = () => {
 					<br />
 					{date}
 				</p>
-			</div>
+			</ListWrapper>
 		));
 }
