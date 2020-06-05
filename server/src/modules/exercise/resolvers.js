@@ -7,7 +7,8 @@ const Exercise = require('./model');
 const resolvers = {
 	Query: {
 		// Query which returns exercises list
-		exercises: () => Exercise.find({}),
+		exerciseList: () => Exercise.find({}),
+		exerciseDetails: (id) => Exercise.find({ id })
 	},
 
 	/**
