@@ -5,6 +5,7 @@ import gql from "graphql-tag";
 import { ListWrapper } from "../../components/layout";
 
 interface IExercise {
+	id: string;
 	username: string;
 	description: string;
 	duration: number;
@@ -17,8 +18,9 @@ interface IWebserviceCommandResponse {
 // function getExercises() {
 export const ExerciseList: FC = () => {
 	const { loading, error, data } = useQuery(gql`
-	  query getExercises {
-		exercises {
+	  query getExerciseList {
+		exerciseList {
+		  id
 		  username
 		  description
 		  duration
@@ -32,12 +34,20 @@ export const ExerciseList: FC = () => {
 		{error}
 	</p>;
 
-	return data.exercises.map(({ username,
+	// const exercises = data.exerciseList;
+
+	// return exercises.map(({
+	return data.exerciseList.map(({
+		id,
+		username,
 		description,
 		duration,
-		date }: IExercise) => (
-			<ListWrapper key={description}>
+		date
+	}: IExercise) => (
+			<ListWrapper key={description + date}>
 				<p>
+					{id}
+					<br />
 					{username}: {description}
 					<br />
 					{duration} {` reps`}
