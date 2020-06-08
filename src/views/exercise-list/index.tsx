@@ -3,14 +3,8 @@ import React, { FC } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { ListWrapper } from "../../components/layout";
+import { IExercise } from "../../config/definitions";
 
-interface IExercise {
-	id: string;
-	username: string;
-	description: string;
-	duration: number;
-	date: string;
-}
 interface IWebserviceCommandResponse {
 	exercises: IExercise;
 }
@@ -34,9 +28,6 @@ export const ExerciseList: FC = () => {
 		{error}
 	</p>;
 
-	// const exercises = data.exerciseList;
-
-	// return exercises.map(({
 	return data.exerciseList.map(({
 		id,
 		username,
