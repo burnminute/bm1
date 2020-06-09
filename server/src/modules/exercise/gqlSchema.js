@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type Exercise {
-    id: ID
+    id: String
     username: String
     description: String
     duration: Int
@@ -17,7 +17,7 @@ const typeDefs = gql`
   }
 
   input UpdateExerciseInput {
-    id: ID! 
+    id: String! 
     username: String! 
     description: String
     duration: Int 
@@ -26,13 +26,13 @@ const typeDefs = gql`
 
   type Query {
     exerciseList: [Exercise]
-    exerciseDetails(id: String): Exercise
+    exerciseDetails(id: String!): Exercise
   }
 
   type Mutation {
     addExercise(exercise: CreateExerciseInput): Exercise
     updateExercise(exercise: UpdateExerciseInput): Exercise
-    deleteExercise(id: ID): Exercise
+    deleteExercise(id: String): Exercise
   }
 `;
 
