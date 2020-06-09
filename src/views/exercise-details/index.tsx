@@ -14,7 +14,7 @@ export const ExerciseDetails: FC = () => {
 	const exerciseId: string = id || "new";
 
 	const { loading, error, data } = useQuery(gql`
-		  query getExerciseDetails($id: String) {
+		  query getExerciseDetails($id: String!) {
 			exerciseDetails(id:$id) {
 			  id
 			  username
@@ -23,15 +23,15 @@ export const ExerciseDetails: FC = () => {
 			  date
 			}
 		  }
-		`, { variables: { exerciseId } });
+		`, { variables: { id: exerciseId } });
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :(<br />
-		{error}
+		{JSON.stringify(error)}
 	</p>;
 
 	const { exerciseDetails } = data;
-	const details: IExercise = exerciseDetails[0] || [{ username: "", description: "", duration: 0, date: "" }];
+	const details: IExercise = exerciseDetails || { username: "", description: "", duration: 0, date: "" };
 
 	// const { username,
 	// 	description,
