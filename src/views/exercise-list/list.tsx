@@ -2,6 +2,7 @@
 import React, { FC } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import { Link } from "react-router-dom";
 import { ListWrapper } from "../../components/layout/components";
 import { LoadingAnimation } from "../../components/loading-animation";
 import { IExercise } from "../../config/definitions";
@@ -39,7 +40,9 @@ export const ExerciseList: FC = () => {
 				<p>
 					{id}
 					<br />
-					{username}: {description}
+					{username}: <Link to={`/edit/${id}`}>
+						{description}
+					</Link>
 					<br />
 					{duration} {` reps`}
 					<br />
