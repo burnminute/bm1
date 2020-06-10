@@ -40,6 +40,16 @@ export const ContentBodyWrapper = styled.div`
 	border-radius: 0px 0px 0.75rem 0.75rem;
 `
 
+export const CenteredContentWrapper = styled.div`
+	align-items: center; 
+	display: flex;
+	flex-direction: column;
+	height:100%;
+	justify-content: center; 
+	position: relative;
+	width:100%;
+`
+
 export const ContentHeaderWrapper = styled.div`
 	position: absolute;
 	height: 7rem;

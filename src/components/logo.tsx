@@ -1,9 +1,5 @@
 import React, { FC } from "react";
-
-export interface IDimensions {
-	width?: string;
-	height?: string;
-}
+import { IDimensions } from "../config/definitions";
 
 export const BurnminuteLogo: FC<IDimensions> = ({ width, height, ...rest }) => {
 	return (

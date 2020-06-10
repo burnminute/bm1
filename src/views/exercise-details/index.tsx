@@ -2,14 +2,16 @@ import React, { FC } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { useParams } from "react-router-dom";
+import { View } from "../../components/layout/view";
 import { ExerciseDetailsForm } from "../../components/forms/exercise-details-form";
 import { IExercise } from "../../config/definitions";
+import { LoadingAnimation } from "../../components/loading-animation";
 
 interface IWebserviceCommandResponse {
 	exercises: IExercise;
 }
 
-export const ExerciseDetails: FC = () => {
+export const ExerciseDetailsView: FC = () => {
 	const { id } = useParams();
 	const exerciseId: string = id || "new";
 
@@ -25,31 +27,28 @@ export const ExerciseDetails: FC = () => {
 		  }
 		`, { variables: { id: exerciseId } });
 
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error :(<br />
-		{JSON.stringify(error)}
-	</p>;
+	let content = (<LoadingAnimation />);
 
-	const { exerciseDetails } = data;
-	const details: IExercise = exerciseDetails || { username: "", description: "", duration: 0, date: "" };
+	if (loading) {
+		content = (<LoadingAnimation />)
+	}
+	else if (error) {
+		content = (<p>Error :(<br />
+			{JSON.stringify(error)}
+		</p>)
+	}
+	else {
+		const { exerciseDetails } = data;
+		const details: IExercise = exerciseDetails || { username: "", description: "", duration: 0, date: "" };
 
-	// const { username,
-	// 	description,
-	// 	duration,
-	// 	date }: IExercise = details;
+		content = (<>
+			<ExerciseDetailsForm details={details} />
+		</>);
+	}
 
 	return (
-		<ExerciseDetailsForm details={details} />
-		// <ListWrapper key={description}>
-		// 	<p>
-		// 		{id}
-		// 		<br />
-		// 		{username}: {description}
-		// 		<br />
-		// 		{duration} {` reps`}
-		// 		<br />
-		// 		{date}
-		// 	</p>
-		// </ListWrapper>
+		<View>
+			{content}
+		</View>
 	);
 }

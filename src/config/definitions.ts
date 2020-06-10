@@ -1,3 +1,8 @@
+export interface IDimensions {
+	width?: number;
+	height?: number;
+}
+
 export interface IExercise {
 	date: string;
 	description: string;
