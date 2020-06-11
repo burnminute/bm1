@@ -29,25 +29,26 @@ export const ExerciseList: FC = () => {
 		{error}
 	</p>;
 
-	return data?.exerciseList?.map(({
-		id,
-		username,
-		description,
-		duration,
-		date
-	}: IExercise) => (
-			<ListWrapper key={description + date}>
-				<p>
-					{id}
-					<br />
-					{username}: <Link to={`/edit/${id}`}>
-						{description}
-					</Link>
-					<br />
-					{duration} {` reps`}
-					<br />
-					{date}
-				</p>
-			</ListWrapper>
-		));
+	return (
+		<>
+			{data?.exerciseList?.map(({
+				id,
+				username,
+				description,
+				duration,
+				date
+			}: IExercise) => (
+					<ListWrapper key={description + date}>
+						{id}
+						<br />
+						{username}: <Link to={`/edit/${id}`}>
+							{description}
+						</Link>
+						<br />
+						{duration} {` reps`}
+						<br />
+						{date}
+					</ListWrapper>
+				))}
+		</>);
 }
