@@ -15,7 +15,7 @@ const IconWrapper = styled.div`
 	display:flex;
 	flex-direction:row;
 	justify-content: space-evenly;
-	width: 7rem;
+	width: 9rem;
 `
 type IDelaySeconds = { delay?: number }
 const FadeInOut = styled.div<IDelaySeconds>`

@@ -3,6 +3,11 @@ export interface IDimensions {
 	height?: number;
 }
 
+export interface ILinkElement {
+	label: string;
+	path: string;
+}
+
 export interface IExercise {
 	date: string;
 	description: string;

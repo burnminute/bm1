@@ -16,6 +16,7 @@
     "rimraf": "3.0.2",
     "standard-version": "7.1.0",
     "ts-jest": "25.2.1",
+    "ts-loader": "^7.0.5",
     "ts-node": "8.6.2",
     "ts-node-dev": "1.0.0-pre.44",
     "tslint": "6.0.0",
@@ -23,7 +24,7 @@
     "tslint-eslint-rules": "5.4.0",
     "tslint-react": "4.2.0",
     "typescript": "^3.9.3",
-    "typescript-plugin-styled-components": "1.4.4",
+    "typescript-plugin-styled-components": "^1.4.4",
     "validate-commit-msg": "2.14.0",
     "webpack-build-timestamp": "1.0.4"
   },

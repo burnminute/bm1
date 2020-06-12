@@ -1,12 +1,18 @@
 import React, { FC } from "react";
 import { AppComponent, BackgroundColumnLeft, ContentBodyWrapper } from "./components";
-import { Header } from "./header";
+import { Header, IHeader } from "./header";
+import { ILinkElement } from "../../config/definitions";
 
-export const View: FC = ({ children }) => {
+export interface IView {
+	breadcrumb: ILinkElement[];
+	sectionTitle: string;
+}
+
+export const View: FC<IView> = ({ breadcrumb, sectionTitle, children }) => {
 	return (
 		<AppComponent>
 			<BackgroundColumnLeft />
-			<Header />
+			<Header breadcrumb={breadcrumb} sectionTitle={sectionTitle} />
 			<ContentBodyWrapper>
 				{children}
 			</ContentBodyWrapper>

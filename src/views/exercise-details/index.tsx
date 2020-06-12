@@ -4,12 +4,17 @@ import gql from "graphql-tag";
 import { useParams } from "react-router-dom";
 import { View } from "../../components/layout/view";
 import { ExerciseDetailsForm } from "../../components/forms/exercise-details-form";
-import { IExercise } from "../../config/definitions";
+import { IExercise, ILinkElement } from "../../config/definitions";
 import { LoadingAnimation } from "../../components/loading-animation";
 
-interface IWebserviceCommandResponse {
+export interface IExerciseDetailsView {
 	exercises: IExercise;
 }
+
+const breadcrumb: ILinkElement[] = [
+	{ label: "Home", path: "/" },
+	{ label: "Excersize List", path: "/exercises" }
+];
 
 export const ExerciseDetailsView: FC = () => {
 	const { id } = useParams();
@@ -47,7 +52,7 @@ export const ExerciseDetailsView: FC = () => {
 	}
 
 	return (
-		<View>
+		<View breadcrumb={breadcrumb} sectionTitle={`Activity`}>
 			{content}
 		</View>
 	);
