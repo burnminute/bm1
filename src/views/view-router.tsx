@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import Navbar from "./components/navbar.component";
 import { ExerciseListView } from "./exercise-list";
 import { ExerciseDetailsView } from "./exercise-details";
+import { Home } from "./home";
 // import { UserDetails } from "./user-details";
 
 export const ViewRouter = () => {
@@ -13,7 +14,8 @@ export const ViewRouter = () => {
 				{/* <Route path="/"> */}
 				{/* <Home /> */}
 				{/* </Route> */}
-				<Route path="/" exact component={ExerciseListView} />
+				<Route path="/" exact component={Home} />
+				<Route path="/exercises" exact component={ExerciseListView} />
 				<Route path="/create" component={ExerciseDetailsView} />
 				<Route path="/edit/:id" component={ExerciseDetailsView} />
 				{/* <Route path="/user" component={UserDetails} /> */}

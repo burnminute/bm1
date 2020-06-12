@@ -44,7 +44,7 @@ export const ContentBodyWrapper = styled.div`
 	left: 2.5rem;
 	right: 2.5rem;
 	bottom: 2.5rem;
-    top: 11rem;
+    top: 10rem;
 	padding: 1.75rem;
 	background: linear-gradient(188.79deg, rgba(241, 252, 248, 0.5) 12.88%, rgba(255, 255, 255, 0) 88.9%), rgba(255, 255, 255, 0.74);
 	border: 0.09rem solid rgba(255, 255, 255, 0.87);
@@ -60,17 +60,4 @@ export const CenteredContentWrapper = styled.div`
 	justify-content: center; 
 	position: relative;
 	width:100%;
-`
-
-export const ContentHeaderWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	height: 7rem;
-	left: 2.5rem;
-	right: 2.5rem;
-	top: 2.5rem;
-	background-color: transparent;
-	background-image: url("./images/burnminute-logo-title.png");
-	background-repeat: no-repeat;
 `
