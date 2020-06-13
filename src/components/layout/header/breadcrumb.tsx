@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 import { ILinkElement } from "../../../config/definitions";
 
 export interface IBreadcrumb {
-	trail: ILinkElement[];
+	breadcrumbTrail?: ILinkElement[];
 }
 
 const BreadcrumbLink = styled(Link)`
-	color: #eeefff;
+	color: #8F9899;
 	text-decoration: none;
 	font-family: Oxygen,sans-serif;
 	padding-right: 0.75rem;
+	:hover {
+		color: #cccccc;
+	}
 `
 const BreadcrumbNoLink = styled.div`
 	color: #dddccc;
@@ -35,9 +38,9 @@ const BreadcrumbWrapper = styled.div`
 	overflow: hidden;
 `
 
-const renderBreadcrumbs = (trail: ILinkElement[]) => (
+const renderBreadcrumbs = (breadcrumbTrail?: ILinkElement[]) => (
 	<>
-		{trail.map(({ label, path }, index) => {
+		{breadcrumbTrail?.map(({ label, path }, index) => {
 			return (
 				<>
 					{path ? <BreadcrumbLink key={path} to={path}>
@@ -46,17 +49,17 @@ const renderBreadcrumbs = (trail: ILinkElement[]) => (
 						: <BreadcrumbNoLink key={path}>
 							{label}
 						</BreadcrumbNoLink>}
-					{index < trail.length - 1 && <BreadcrumbDivider>{`/`}</BreadcrumbDivider>}
+					{index < breadcrumbTrail.length - 1 && <BreadcrumbDivider>{`/`}</BreadcrumbDivider>}
 				</>
 			)
 		})}
 	</>
 )
 
-export const Breadcrumb: FC<IBreadcrumb> = ({ trail }) => {
+export const Breadcrumb: FC<IBreadcrumb> = ({ breadcrumbTrail }) => {
 	return (
 		<BreadcrumbWrapper>
-			{renderBreadcrumbs(trail)}
+			{renderBreadcrumbs(breadcrumbTrail)}
 		</BreadcrumbWrapper>
 	)
 };

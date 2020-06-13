@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { IDimensions } from "../config/definitions";
+import { IDimensions } from "../../../config/definitions";
 
 export const BurnminuteLogoTitle: FC<IDimensions> = ({ height = "5.5rem", width, ...rest }) => {
 	return (

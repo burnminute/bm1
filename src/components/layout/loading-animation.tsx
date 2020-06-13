@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { IDimensions } from "../config/definitions";
-import { CenteredContentWrapper } from "./layout/components";
+import { IDimensions } from "../../config/definitions";
+import { CenteredContentWrapper } from "./";
 
 const LoadingSvg: FC<IDimensions> = ({ width = 47, height = 47, ...rest }) => {
 	return (

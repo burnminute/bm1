@@ -14,7 +14,7 @@ const breadcrumb: ILinkElement[] = [
 
 export const ExerciseListView: FC = () => {
 	return (
-		<View breadcrumb={breadcrumb} sectionTitle={`Activity`}>
+		<View breadcrumbTrail={breadcrumb} sectionTitle={`Activity`} contentTitle={`Exercise List`}>
 			<ExerciseList />
 		</View>
 	)

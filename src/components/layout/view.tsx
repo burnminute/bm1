@@ -1,21 +1,20 @@
 import React, { FC } from "react";
-import { AppComponent, BackgroundColumnLeft, ContentBodyWrapper } from "./components";
+import { AppComponent, BackgroundColumnLeft } from "./";
 import { Header, IHeader } from "./header";
-import { ILinkElement } from "../../config/definitions";
+import { IBreadcrumb } from "./header/breadcrumb";
+import { Content, IContent } from "./content";
 
-export interface IView {
-	breadcrumb: ILinkElement[];
-	sectionTitle: string;
+export interface IView extends IHeader, IBreadcrumb, IContent {
 }
 
-export const View: FC<IView> = ({ breadcrumb, sectionTitle, children }) => {
+export const View: FC<IView> = ({ breadcrumbTrail, contentTitle, sectionTitle, children }) => {
 	return (
 		<AppComponent>
 			<BackgroundColumnLeft />
-			<Header breadcrumb={breadcrumb} sectionTitle={sectionTitle} />
-			<ContentBodyWrapper>
+			<Header breadcrumbTrail={breadcrumbTrail} sectionTitle={sectionTitle} />
+			<Content contentTitle={contentTitle}>
 				{children}
-			</ContentBodyWrapper>
+			</Content>
 		</AppComponent>
 	)
 };

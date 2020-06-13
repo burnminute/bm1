@@ -1,13 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { ILinkElement } from "../../config/definitions";
-import { Breadcrumb } from "./header/breadcrumb";
-import { BurnminuteLogoTitle } from "../logo-title";
+import { Breadcrumb, IBreadcrumb } from "./breadcrumb";
+import { BurnminuteLogoTitle } from "./logo-title";
 import { Link } from "react-router-dom";
 
-export interface IHeader {
-	breadcrumb: ILinkElement[];
-	sectionTitle: string;
+export interface IHeader extends IBreadcrumb {
+	sectionTitle?: string;
 }
 
 export const ContentHeaderWrapper = styled.div`
@@ -25,7 +23,7 @@ export const ContentHeaderWrapper = styled.div`
 
 const SectionTitle = styled.div`
 	user-select: none;
-    color: #5b5280;
+    color: rgba(155,191,198,0.5);
     font-family: Sunflower,sans-serif;
     font-size: 2rem;
     font-weight: bold;
@@ -34,21 +32,21 @@ const SectionTitle = styled.div`
 `
 
 const SubHeaderWrapper = styled.div`
-	padding: 0.75rem 0rem 0rem 0;
+	padding: 0.75rem 0rem 0rem 0rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	overflow: hidden;
 `
 
-export const Header: FC<IHeader> = ({ breadcrumb, sectionTitle }) => {
+export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
 	return (
 		<ContentHeaderWrapper>
 			<Link to="/">
 				<BurnminuteLogoTitle />
 			</Link>
 			<SubHeaderWrapper>
-				<Breadcrumb trail={breadcrumb} />
+				<Breadcrumb breadcrumbTrail={breadcrumbTrail} />
 				<SectionTitle>{sectionTitle}</SectionTitle>
 			</SubHeaderWrapper>
 		</ContentHeaderWrapper>

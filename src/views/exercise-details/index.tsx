@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { View } from "../../components/layout/view";
 import { ExerciseDetailsForm } from "../../components/forms/exercise-details-form";
 import { IExercise, ILinkElement } from "../../config/definitions";
-import { LoadingAnimation } from "../../components/loading-animation";
+import { LoadingAnimation } from "../../components/layout/loading-animation";
 
 export interface IExerciseDetailsView {
 	exercises: IExercise;
@@ -13,12 +13,13 @@ export interface IExerciseDetailsView {
 
 const breadcrumb: ILinkElement[] = [
 	{ label: "Home", path: "/" },
-	{ label: "Excersize List", path: "/exercises" }
+	{ label: "Exercise List", path: "/exercises" }
 ];
 
 export const ExerciseDetailsView: FC = () => {
 	const { id } = useParams();
 	const exerciseId: string = id || "new";
+	let details: IExercise = { username: "", description: "", duration: 0, date: "" };
 
 	const { loading, error, data } = useQuery(gql`
 		  query getExerciseDetails($id: String!) {
@@ -44,7 +45,7 @@ export const ExerciseDetailsView: FC = () => {
 	}
 	else {
 		const { exerciseDetails } = data;
-		const details: IExercise = exerciseDetails || { username: "", description: "", duration: 0, date: "" };
+		details = exerciseDetails;
 
 		content = (<>
 			<ExerciseDetailsForm details={details} />
@@ -52,7 +53,7 @@ export const ExerciseDetailsView: FC = () => {
 	}
 
 	return (
-		<View breadcrumb={breadcrumb} sectionTitle={`Activity`}>
+		<View breadcrumbTrail={breadcrumb} sectionTitle={`Activity`} contentTitle={details.description || ""}>
 			{content}
 		</View>
 	);
