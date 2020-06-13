@@ -39,19 +39,6 @@ export const BackgroundColumnLeft = styled.div`
 	border-radius: 1rem 0px 0px 1rem;
 `
 
-export const ContentBodyWrapper = styled.div`
-	position: absolute;
-	left: 2.5rem;
-	right: 2.5rem;
-	bottom: 2.5rem;
-    top: 10rem;
-	padding: 1.75rem;
-	background: linear-gradient(188.79deg, rgba(241, 252, 248, 0.5) 12.88%, rgba(255, 255, 255, 0) 88.9%), rgba(255, 255, 255, 0.74);
-	border: 0.09rem solid rgba(255, 255, 255, 0.87);
-	box-sizing: border-box;
-	border-radius: 0px 0px 0.75rem 0.75rem;
-`
-
 export const CenteredContentWrapper = styled.div`
 	align-items: center; 
 	display: flex;

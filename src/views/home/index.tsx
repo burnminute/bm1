@@ -1,4 +1,16 @@
-import React from "react";
-import { ViewWrapper } from "./components";
 
-export const Home = () => <ViewWrapper>Hello, Bro</ViewWrapper>;
+import React, { FC } from "react";
+import { View } from "../../components/layout/view";
+import { IExercise } from "../../config/definitions";
+
+interface IWebserviceCommandResponse {
+	exercises: IExercise;
+}
+
+export const HomeView: FC = () => {
+	return (
+		<View contentTitle={`Home`}>
+			{`Home`}
+		</View>
+	)
+}
