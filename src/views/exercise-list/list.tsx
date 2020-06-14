@@ -41,7 +41,7 @@ export const ExerciseList: FC = () => {
 					<ListWrapper key={description + date}>
 						{id}
 						<br />
-						{username}: <Link to={`/edit/${id}`}>
+						{username}: <Link to={`/exercises/${id}`}>
 							{description}
 						</Link>
 						<br />

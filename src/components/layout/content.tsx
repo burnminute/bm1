@@ -23,6 +23,7 @@ export const ContentWrapper = styled.div`
 
 export const ContentBody = styled.div`
 	padding: 1.5rem;
+	height: 100%;
 `;
 
 export const ContentTitle = styled.div`

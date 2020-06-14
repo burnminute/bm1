@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { View } from "../../components/layout/view";
-import { EditIcon } from "../../components/icons/edit";
+import { ExerciseDetailsForm } from "../../components/forms/exercise-details-form";
 import { IExercise, ILinkElement } from "../../config/definitions";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
 
-export interface IExerciseDetailsView {
+export interface IExerciseDetailsViewEdit {
 	exercises: IExercise;
 }
 
@@ -16,9 +16,8 @@ const breadcrumb: ILinkElement[] = [
 	{ label: "Exercise List", path: "/exercises" }
 ];
 
-export const ExerciseDetailsView: FC = () => {
+export const ExerciseDetailsViewEdit: FC = () => {
 	const { id } = useParams();
-	const { pathname } = useLocation();
 	const exerciseId: string = id || "new";
 	let details: IExercise = { username: "", description: "", duration: 0, date: "" };
 
@@ -48,19 +47,8 @@ export const ExerciseDetailsView: FC = () => {
 		const { exerciseDetails } = data;
 		details = exerciseDetails;
 
-		const {
-			date,
-			description,
-			duration,
-			username
-		} = details;
-
 		content = (<>
-			<div>{id}</div>
-			<div>{description} {duration}</div>
-			<div>{username}</div>
-			<div>{date}</div>
-			<Link to={`${pathname}/edit`} title="Edit"><EditIcon /></Link>
+			<ExerciseDetailsForm details={details} />
 		</>);
 	}
 

@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { IExercise, Exercise } from "../../config/definitions";
+import { StartButton } from "../../components/buttons";
 
 export interface IExerciseDetailsFormProps {
 	details: IExercise;
@@ -69,7 +70,7 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({ details }) 
 			/>
 			{errors.duration && errors.duration.message}
 
-			<button type="submit">Submit</button>
+			<StartButton type="submit">Save</StartButton>
 		</form>
 	);
 }
