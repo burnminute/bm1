@@ -22,6 +22,7 @@ const resolvers = {
 				username: exercise.username,
 				description: exercise.description,
 				duration: exercise.duration,
+				category: exercise.category,
 				date: exercise.date
 			});
 			// Save the record and return it

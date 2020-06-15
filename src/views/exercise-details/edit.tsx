@@ -19,7 +19,7 @@ const breadcrumb: ILinkElement[] = [
 export const ExerciseDetailsViewEdit: FC = () => {
 	const { id } = useParams();
 	const exerciseId: string = id || "new";
-	let details: IExercise = { username: "", description: "", duration: 0, date: "" };
+	let details: IExercise = { username: "", description: "", duration: "", date: "" };
 
 	const { loading, error, data } = useQuery(gql`
 		  query getExerciseDetails($id: String!) {
@@ -28,6 +28,7 @@ export const ExerciseDetailsViewEdit: FC = () => {
 			  username
 			  description
 			  duration
+			  category
 			  date
 			}
 		  }

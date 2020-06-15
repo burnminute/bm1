@@ -11,7 +11,8 @@ export interface ILinkElement {
 export interface IExercise {
 	date: string;
 	description: string;
-	duration: number;
+	duration?: string;
+	category?: string;
 	id?: string;
 	username: string;
 }

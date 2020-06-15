@@ -5,14 +5,16 @@ const typeDefs = gql`
     id: String
     username: String
     description: String
-    duration: Int
+    duration: String
+    category: String
     date: String
   }
 
   input CreateExerciseInput {
     username: String! 
     description: String
-    duration: Int 
+    duration: String 
+    category: String 
     date: String
   }
 
@@ -20,7 +22,8 @@ const typeDefs = gql`
     id: String! 
     username: String! 
     description: String
-    duration: Int 
+    duration: String 
+    category: String 
     date: String
   }
 
