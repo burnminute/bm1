@@ -19,6 +19,7 @@ export const ExerciseList: FC = () => {
 		  username
 		  description
 		  duration
+		  category
 		  date
 		}
 	  }
@@ -36,6 +37,7 @@ export const ExerciseList: FC = () => {
 				username,
 				description,
 				duration,
+				category,
 				date
 			}: IExercise) => (
 					<ListWrapper key={description + date}>

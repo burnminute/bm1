@@ -1,20 +1,28 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { IExercise, Exercise } from "../../config/definitions";
-import { StartButton } from "../../components/buttons";
+import { CancelButton, StartButton } from "../../components/buttons";
+import { useHistory } from "react-router-dom";
 
 export interface IExerciseDetailsFormProps {
 	details: IExercise;
 }
 
+
 export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({ details }) => {
 	const { handleSubmit, register, errors } = useForm<Exercise>();
 	const onSubmit = (values: IExercise) => console.log(values);
+
+	const history = useHistory();
+	const handleCancel = () => {
+		history.goBack();
+	}
 
 	const {
 		date,
 		description,
 		duration,
+		category,
 		id,
 		username
 	} = details;
@@ -49,7 +57,14 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({ details }) 
 			{errors.username && errors.username.message}
 
 			<input
+				name="category"
+				required
+				defaultValue={category}
+			/>
+
+			<input
 				name="description"
+				required
 				// ref={register({
 				// 	validate: value => value !== "admin" || "Nice try!"
 				// })}
@@ -59,18 +74,20 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({ details }) 
 
 			<input
 				name="duration"
-				ref={register({
-					required: true,
-					pattern: {
-						value: /^\d+$/,
-						message: "Reps must be numeric"
-					}
-				})}
+				// ref={register({
+				// 	required: true,
+				// 	pattern: {
+				// 		value: /^\d+$/,
+				// 		message: "Reps must be numeric"
+				// 	}
+				// })}
 				defaultValue={duration}
 			/>
 			{errors.duration && errors.duration.message}
-
+			{/* <Link to={`${pathname}/edit`} title="Edit"/> */}
+			<CancelButton onClick={handleCancel}>Cancel</CancelButton>
+			{/* </Link> */}
 			<StartButton type="submit">Save</StartButton>
-		</form>
+		</form >
 	);
 }
