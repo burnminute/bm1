@@ -25,10 +25,6 @@ export const AppComponent = styled.div`
     overflow: hidden;
 `;
 
-export const ListWrapper = styled.div`
-	background-color: rgba(213,223,233,0.1);
-`
-
 export const BackgroundColumnLeft = styled.div`
 	position: absolute;
 	width: 33%;

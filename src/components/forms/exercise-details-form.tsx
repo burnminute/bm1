@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 import { IExercise, Exercise } from "../../config/definitions";
 import { CancelButton, StartButton } from "../../components/buttons";
 import { useHistory } from "react-router-dom";
@@ -8,24 +9,18 @@ export interface IExerciseDetailsFormProps {
 	details: IExercise;
 }
 
-
-export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({ details }) => {
+export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({
+	details,
+}) => {
 	const { handleSubmit, register, errors } = useForm<Exercise>();
 	const onSubmit = (values: IExercise) => console.log(values);
 
 	const history = useHistory();
 	const handleCancel = () => {
 		history.goBack();
-	}
+	};
 
-	const {
-		date,
-		description,
-		duration,
-		category,
-		id,
-		username
-	} = details;
+	const { date, description, duration, category, id, username } = details;
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -50,17 +45,13 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({ details }) 
 				name="username"
 				required
 				ref={register({
-					validate: value => value !== "admin" || "Nice try!"
+					validate: (value) => value !== "admin" || "Nice try!",
 				})}
 				defaultValue={username}
 			/>
 			{errors.username && errors.username.message}
 
-			<input
-				name="category"
-				required
-				defaultValue={category}
-			/>
+			<input name="category" required defaultValue={category} />
 
 			<input
 				name="description"
@@ -88,6 +79,6 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({ details }) 
 			<CancelButton onClick={handleCancel}>Cancel</CancelButton>
 			{/* </Link> */}
 			<StartButton type="submit">Save</StartButton>
-		</form >
+		</form>
 	);
-}
+};

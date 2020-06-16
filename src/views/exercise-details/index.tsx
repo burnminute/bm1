@@ -16,7 +16,7 @@ const DetailsTitle = styled.div`
 	line-height: 2.5rem;
 	text-decoration-line: underline;
 	color: #328294;
-`
+`;
 
 const DetailsDuration = styled.div`
 	font-family: Quantico;
@@ -25,7 +25,7 @@ const DetailsDuration = styled.div`
 	font-size: 1.5rem;
 	line-height: 2rem;
 	color: #103200;
-`
+`;
 
 export interface IExerciseDetailsView {
 	exercises: IExercise;
@@ -33,7 +33,7 @@ export interface IExerciseDetailsView {
 
 const breadcrumb: ILinkElement[] = [
 	{ label: "Home", path: "/" },
-	{ label: "Exercise List", path: "/exercises" }
+	{ label: "Exercise List", path: "/exercises" },
 ];
 
 export const ExerciseDetailsView: FC = () => {
@@ -41,58 +41,70 @@ export const ExerciseDetailsView: FC = () => {
 	const { id } = useParams();
 	const { pathname } = useLocation();
 	const exerciseId: string = id || "new";
-	let details: IExercise = { username: "", description: "", duration: "", date: "" };
+	let details: IExercise = {
+		username: "",
+		description: "",
+		duration: "",
+		date: "",
+	};
 
-	const { loading, error, data } = useQuery(gql`
-		  query getExerciseDetails($id: String!) {
-			exerciseDetails(id:$id) {
-			  id
-			  username
-			  description
-			  duration
-			  category
-			  date
+	const { loading, error, data } = useQuery(
+		gql`
+			query getExerciseDetails($id: String!) {
+				exerciseDetails(id: $id) {
+					id
+					username
+					description
+					duration
+					category
+					date
+				}
 			}
-		  }
-		`, { variables: { id: exerciseId } });
+		`,
+		{ variables: { id: exerciseId } }
+	);
 
-	let content = (<LoadingAnimation />);
+	let content = <LoadingAnimation />;
 
 	if (loading) {
-		content = (<LoadingAnimation />)
-	}
-	else if (error) {
-		content = (<p>Error :(<br />
-			{JSON.stringify(error)}
-		</p>)
-	}
-	else {
+		content = <LoadingAnimation />;
+	} else if (error) {
+		content = (
+			<p>
+				Error :(
+				<br />
+				{JSON.stringify(error)}
+			</p>
+		);
+	} else {
 		const { exerciseDetails } = data;
 		details = exerciseDetails;
 
-		const {
-			date,
-			description,
-			duration,
-			category,
-			username
-		} = details;
+		const { date, description, duration, category, username } = details;
 
-		content = (<>
-			{/* <div>{id}</div> */}
-			<DetailsTitle>{description}</DetailsTitle>
-			<DetailsDuration> {`[${duration}]`}</DetailsDuration>
-			{/* <div>{username}</div> */}
-			{/* <div>{date}</div> */}
-			{activityStarted && <div>{`Stop`}</div>}
-			{!activityStarted && <div>{`Start!`}</div>}
-			<Link to={`${pathname}/edit`} title="Edit"><EditIcon /></Link>
-		</>);
+		content = (
+			<>
+				{/* <div>{id}</div> */}
+				<DetailsTitle>{description}</DetailsTitle>
+				<DetailsDuration> {`[${duration}]`}</DetailsDuration>
+				{/* <div>{username}</div> */}
+				{/* <div>{date}</div> */}
+				{activityStarted && <div>{`Stop`}</div>}
+				{!activityStarted && <div>{`Start!`}</div>}
+				<Link to={`${pathname}/edit`} title="Edit">
+					<EditIcon />
+				</Link>
+			</>
+		);
 	}
 
 	return (
-		<View breadcrumbTrail={breadcrumb} sectionTitle={`Activity`} contentTitle={details.description || ""}>
+		<View
+			breadcrumbTrail={breadcrumb}
+			contentTitle={details.description || ""}
+			sectionTitle={`Activity`}
+		>
 			{content}
 		</View>
 	);
-}
+};

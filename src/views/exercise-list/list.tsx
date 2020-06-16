@@ -2,14 +2,24 @@
 import React, { FC } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ListWrapper } from "../../components/layout";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
 import { IExercise } from "../../config/definitions";
 
 interface IResponse {
 	exerciseList: IExercise[];
 }
+
+const ListWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+`
+
+export const ListItemWrapper = styled.div`
+	background-color: rgba(213,223,233,0.1);
+	padding: 1rem;
+`
 
 export const ExerciseList: FC = () => {
 	const { loading, error, data } = useQuery(gql`
@@ -31,7 +41,7 @@ export const ExerciseList: FC = () => {
 	</p>;
 
 	return (
-		<>
+		<ListWrapper>
 			{data?.exerciseList?.map(({
 				id,
 				username,
@@ -40,7 +50,7 @@ export const ExerciseList: FC = () => {
 				category,
 				date
 			}: IExercise) => (
-					<ListWrapper key={description + date}>
+					<ListItemWrapper key={description + date}>
 						{id}
 						<br />
 						{username}: <Link to={`/exercises/${id}`}>
@@ -50,7 +60,7 @@ export const ExerciseList: FC = () => {
 						{duration} {` reps`}
 						<br />
 						{date}
-					</ListWrapper>
+					</ListItemWrapper>
 				))}
-		</>);
+		</ListWrapper>);
 }

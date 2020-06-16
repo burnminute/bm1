@@ -19,17 +19,17 @@ export const ContentHeaderWrapper = styled.div`
 	background-color: transparent;
 	background-image: url("./images/burnminute-logo-title.png");
 	background-repeat: no-repeat;
-	`
+`;
 
 const SectionTitle = styled.div`
 	user-select: none;
-    color: rgba(155,191,198,0.5);
-    font-family: Sunflower,sans-serif;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: -0.87rem;
-    text-transform: lowercase;
-`
+	color: rgba(155, 191, 198, 0.5);
+	font-family: Sunflower, sans-serif;
+	font-size: 2rem;
+	font-weight: bold;
+	margin-top: -0.87rem;
+	text-transform: lowercase;
+`;
 
 const SubHeaderWrapper = styled.div`
 	padding: 0.75rem 0rem 0rem 0rem;
@@ -37,7 +37,7 @@ const SubHeaderWrapper = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 	overflow: hidden;
-`
+`;
 
 export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
 	return (
@@ -50,5 +50,5 @@ export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
 				<SectionTitle>{sectionTitle}</SectionTitle>
 			</SubHeaderWrapper>
 		</ContentHeaderWrapper>
-	)
+	);
 };
