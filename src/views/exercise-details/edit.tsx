@@ -11,51 +11,73 @@ export interface IExerciseDetailsViewEdit {
 	exercises: IExercise;
 }
 
-const breadcrumb: ILinkElement[] = [
+const baseBreadcrumb: ILinkElement[] = [
 	{ label: "Home", path: "/" },
-	{ label: "Exercise List", path: "/exercises" }
+	{ label: "Exercise List", path: "/exercises" },
 ];
+let breadcrumb = baseBreadcrumb.concat();
 
 export const ExerciseDetailsViewEdit: FC = () => {
 	const { id } = useParams();
 	const exerciseId: string = id || "new";
-	let details: IExercise = { username: "", description: "", duration: "", date: "" };
+	let details: IExercise = {
+		username: "",
+		description: "",
+		duration: "",
+		date: "",
+	};
 
-	const { loading, error, data } = useQuery(gql`
-		  query getExerciseDetails($id: String!) {
-			exerciseDetails(id:$id) {
-			  id
-			  username
-			  description
-			  duration
-			  category
-			  date
+	const { loading, error, data } = useQuery(
+		gql`
+			query getExerciseDetails($id: String!) {
+				exerciseDetails(id: $id) {
+					id
+					username
+					description
+					duration
+					category
+					date
+				}
 			}
-		  }
-		`, { variables: { id: exerciseId } });
+		`,
+		{ variables: { id: exerciseId } }
+	);
 
-	let content = (<LoadingAnimation />);
+	let content = <LoadingAnimation />;
 
 	if (loading) {
-		content = (<LoadingAnimation />)
-	}
-	else if (error) {
-		content = (<p>Error :(<br />
-			{JSON.stringify(error)}
-		</p>)
-	}
-	else {
+		content = <LoadingAnimation />;
+	} else if (error) {
+		content = (
+			<p>
+				Error :(
+				<br />
+				{JSON.stringify(error)}
+			</p>
+		);
+	} else {
 		const { exerciseDetails } = data;
 		details = exerciseDetails;
 
-		content = (<>
-			<ExerciseDetailsForm details={details} />
-		</>);
+		breadcrumb = [
+			...baseBreadcrumb,
+			{ label: details.description, path: `/exercises/${details.id}` },
+		];
+
+		content = (
+			<>
+				<ExerciseDetailsForm details={details} />
+			</>
+		);
 	}
 
 	return (
-		<View breadcrumbTrail={breadcrumb} sectionTitle={`Activity`} contentTitle={details.description || ""}>
+		<View
+			breadcrumbTrail={breadcrumb}
+			sectionTitle={`Activity`}
+			contentTitle={`Edit '${details.description}'` || ""}
+		>
 			{content}
 		</View>
 	);
-}
+};

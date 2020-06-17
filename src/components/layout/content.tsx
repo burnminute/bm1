@@ -27,6 +27,7 @@ export const ContentTitle = styled.div`
 	padding: 0.75rem 1.75rem 0rem 1.5rem;
 	height: 2.5rem;
 	background-color: rgba(251, 253, 255, 0.37);
+	color: rgba(49, 96, 99, 1);
 `;
 
 export const ContentBody = styled.div`
