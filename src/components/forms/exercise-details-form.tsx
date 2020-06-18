@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { updateExerciseMutation } from "../../gql/exercises";
@@ -65,7 +64,10 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({
 
 	const onSubmit = async (values: IExercise) => {
 		console.log(`form values: ${JSON.stringify(values)}`);
-		await updateExercise({ variables: { ...values } });
+		await updateExercise({
+			variables: { ...values },
+			refetchQueries: () => ["getExerciseDetailsQuery"],
+		});
 	};
 
 	const history = useHistory();
