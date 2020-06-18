@@ -18,51 +18,40 @@ const resolvers = {
 	 */
 	Mutation: {
 		addExercise: (parent, exercise) => {
+			const { username, description, duration, category, date } = exercise;
+
 			// addExercise: (parent, { username, description, duration, date }) => {
 			// Create a new record in the database
 			const newExercise = new Exercise({
-				// exercise: {
-				username: "yo",
-				description: "sup?",
-				duration: "123 hi",
-				category: "hmm",
-				date: "weird day",
-				// }
-				// username: exercise.username,
-				// description: exercise.description,
-				// duration: exercise.duration,
-				// category: exercise.category,
-				// date: exercise.date
+				username: username,
+				description: description,
+				duration: duration,
+				category: category,
+				date: date,
 			});
 			// Save the record and return it
 			return newExercise.save();
 		},
-		updateExercise: (parent, exercise) => {
-			// Update an existing record in the database
-			// const exerciseToUpdate = Exercise.findOne({ _id: exercise.id });
-
+		updateExercise: async (parent, exercise) => {
 			console.log(`\nresolver values: ${JSON.stringify(exercise)}`);
 
-			const exerciseToUpdate = new Exercise({
-				// username: "yo",
-				// description: "sup?",
-				// duration: "123 hi bro",
-				// category: "hmm",
-				// date: "weird day"
-				username: exercise.username,
-				description: exercise.description,
-				duration: exercise.duration,
-				category: exercise.category,
-				date: exercise.date,
-			});
-			// exerciseToUpdate.username = exercise.username;
-			// exerciseToUpdate.description = exercise.description;
-			// exerciseToUpdate.duration = exercise.duration;
-			// exerciseToUpdate.category = exercise.category;
-			// exerciseToUpdate.date = exercise.date;
+			const { id, username, description, duration, category, date } = exercise;
 
-			// Save the record and return it
-			return exerciseToUpdate.save();
+			try {
+				const exerciseToUpdate = await Exercise.findById(id);
+
+				console.log(`exerciseToUpdate: ${JSON.stringify(exerciseToUpdate)}`);
+
+				exerciseToUpdate.username = username;
+				exerciseToUpdate.description = description;
+				exerciseToUpdate.duration = duration;
+				exerciseToUpdate.category = category;
+				exerciseToUpdate.date = date;
+				// Save the record and return it
+				return exerciseToUpdate.save();
+			} catch (error) {
+				throw new Error(`Mongo - no record found for id: ${id}: \n\t${error}`);
+			}
 		},
 	},
 };

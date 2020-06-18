@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
 import { IExercise } from "../../config/definitions";
+import { getExerciseListQuery } from "../../gql/exercises";
 
 interface IResponse {
 	exerciseList: IExercise[];
@@ -24,18 +25,7 @@ export const ListItemWrapper = styled.div`
 `;
 
 export const ExerciseList: FC = () => {
-	const { loading, error, data } = useQuery(gql`
-		query getExerciseList {
-			exerciseList {
-				id
-				username
-				description
-				duration
-				category
-				date
-			}
-		}
-	`);
+	const { loading, error, data } = useQuery(getExerciseListQuery);
 
 	if (loading) return <LoadingAnimation />;
 	if (error)
@@ -51,15 +41,17 @@ export const ExerciseList: FC = () => {
 		<ListWrapper>
 			{data?.exerciseList?.map(
 				({
-					id,
-					username,
-					description,
-					duration,
 					category,
 					date,
+					description,
+					duration,
+					id,
+					username,
 				}: IExercise) => (
-					<ListItemWrapper key={description + date}>
+					<ListItemWrapper key={id}>
 						{id}
+						<br />
+						{category}
 						<br />
 						{username}: <Link to={`/exercises/${id}`}>{description}</Link>
 						<br />

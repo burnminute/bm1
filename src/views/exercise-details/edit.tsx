@@ -6,6 +6,7 @@ import { View } from "../../components/layout/view";
 import { ExerciseDetailsForm } from "../../components/forms/exercise-details-form";
 import { IExercise, ILinkElement } from "../../config/definitions";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
+import { getExerciseDetailsQuery } from "../../gql/exercises";
 
 export interface IExerciseDetailsViewEdit {
 	exercises: IExercise;
@@ -27,21 +28,9 @@ export const ExerciseDetailsViewEdit: FC = () => {
 		date: "",
 	};
 
-	const { loading, error, data } = useQuery(
-		gql`
-			query getExerciseDetails($id: String!) {
-				exerciseDetails(id: $id) {
-					id
-					username
-					description
-					duration
-					category
-					date
-				}
-			}
-		`,
-		{ variables: { id: exerciseId } }
-	);
+	const { loading, error, data } = useQuery(getExerciseDetailsQuery, {
+		variables: { id: exerciseId },
+	});
 
 	let content = <LoadingAnimation />;
 
