@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
 import { IExercise } from "../../config/definitions";
-import { getExerciseListQuery } from "../../gql/exercises";
+import { getExerciseListQuery } from "../../gql/exercise";
 
 interface IResponse {
 	exerciseList: IExercise[];

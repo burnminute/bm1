@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Breadcrumb, IBreadcrumb } from "./breadcrumb";
 import { BurnminuteLogoTitle } from "./logo-title";
+import { NavMenu } from "./nav-menu";
 import { Link } from "react-router-dom";
 
 export interface IHeader extends IBreadcrumb {
@@ -48,6 +49,7 @@ export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
 			<SubHeaderWrapper>
 				<Breadcrumb breadcrumbTrail={breadcrumbTrail} />
 				<SectionTitle>{sectionTitle}</SectionTitle>
+				<NavMenu />
 			</SubHeaderWrapper>
 		</ContentHeaderWrapper>
 	);

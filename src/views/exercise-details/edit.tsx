@@ -6,7 +6,7 @@ import { View } from "../../components/layout/view";
 import { ExerciseDetailsForm } from "../../components/forms/exercise-details-form";
 import { IExercise, ILinkElement } from "../../config/definitions";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
-import { getExerciseDetailsQuery } from "../../gql/exercises";
+import { getExerciseDetailsQuery } from "../../gql/exercise";
 
 export interface IExerciseDetailsViewEdit {
 	exercises: IExercise;
