@@ -20,3 +20,14 @@ export interface IExercise {
 export type ExerciseKeys = keyof IExercise;
 
 export type Exercise = Pick<IExercise, ExerciseKeys>;
+
+export interface IUser {
+	email?: string;
+	fullName: string;
+	id?: string;
+	username: string;
+}
+
+export type UserKeys = keyof IUser;
+
+export type User = Pick<IUser, UserKeys>;

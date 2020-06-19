@@ -7,7 +7,7 @@ import { View } from "../../components/layout/view";
 import { EditIcon } from "../../components/icons/edit";
 import { IExercise, ILinkElement } from "../../config/definitions";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
-import { getExerciseDetailsQuery } from "../../gql/exercises";
+import { getExerciseDetailsQuery } from "../../gql/exercise";
 
 const DetailsTitle = styled.div`
 	font-family: Quantico;
