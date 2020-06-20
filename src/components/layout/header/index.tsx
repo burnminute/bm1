@@ -22,15 +22,16 @@ export const ContentHeaderWrapper = styled.div`
 	background-repeat: no-repeat;
 `;
 
-const SectionTitle = styled.div`
-	user-select: none;
-	color: rgba(155, 191, 198, 0.5);
-	font-family: Sunflower, sans-serif;
-	font-size: 2rem;
-	font-weight: bold;
-	margin-top: -0.87rem;
-	text-transform: lowercase;
-`;
+// const SectionTitle = styled.div`
+// 	user-select: none;
+// 	color: rgba(155, 191, 198, 0.5);
+// 	font-family: Sunflower, sans-serif;
+// 	font-size: 2rem;
+// 	font-weight: bold;
+// 	margin-top: -0.87rem;
+// 	margin-right: 3.5rem;
+// 	text-transform: lowercase;
+// `;
 
 const SubHeaderWrapper = styled.div`
 	padding: 0.75rem 0rem 0rem 0rem;
@@ -40,16 +41,20 @@ const SubHeaderWrapper = styled.div`
 	overflow: hidden;
 `;
 
+const LogoLink = styled(Link)`
+	width: fit-content;
+`;
+
 export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
 	return (
 		<ContentHeaderWrapper>
-			<Link to="/">
+			<LogoLink to="/">
 				<BurnminuteLogoTitle />
-			</Link>
+			</LogoLink>
 			<SubHeaderWrapper>
 				<Breadcrumb breadcrumbTrail={breadcrumbTrail} />
-				<SectionTitle>{sectionTitle}</SectionTitle>
-				<NavMenu />
+				{/* <SectionTitle>{sectionTitle}</SectionTitle> */}
+				<NavMenu currentTitle={sectionTitle} />
 			</SubHeaderWrapper>
 		</ContentHeaderWrapper>
 	);
