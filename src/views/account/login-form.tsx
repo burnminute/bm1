@@ -36,18 +36,11 @@ export const LoginForm: FC<ILoginFormProps> = ({ details }) => {
 		history.goBack();
 	};
 
-	const { fullName, email, id, username } = details || { details: {} };
+	const { fullName, password, id, username } = details || { details: {} };
 
 	return (
 		<CenteredContentWrapper>
 			<FormContainer onSubmit={handleSubmit(onSubmit)}>
-				<TextInput
-					disabled
-					name="id"
-					required
-					ref={register}
-					defaultValue={id}
-				/>
 				<InputWrapper title="user">
 					<InputLabel>
 						{`user`}
@@ -61,23 +54,10 @@ export const LoginForm: FC<ILoginFormProps> = ({ details }) => {
 					</InputLabel>
 				</InputWrapper>
 
-				<InputWrapper title="email">
+				<InputWrapper title="password">
 					<InputLabel>
-						{`email`}
-						<TextInput name="email" defaultValue={email} ref={register} />
-					</InputLabel>
-				</InputWrapper>
-
-				<InputWrapper title="fullName">
-					<InputLabel>
-						{`fullName`}
-						<TextInput
-							name="fullName"
-							required
-							ref={register}
-							defaultValue={fullName}
-						/>
-						{errors.fullName && errors.fullName.message}
+						{`password`}
+						<TextInput name="password" defaultValue={password} ref={register} />
 					</InputLabel>
 				</InputWrapper>
 
@@ -91,5 +71,5 @@ export const LoginForm: FC<ILoginFormProps> = ({ details }) => {
 };
 
 LoginForm.defaultProps = {
-	details: { id: "", username: "", fullName: "", email: "" },
+	details: { id: "", username: "", fullName: "", password: "" },
 };

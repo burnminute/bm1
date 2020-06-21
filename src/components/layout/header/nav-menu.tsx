@@ -54,6 +54,7 @@ const NavMenuItem = styled.div`
 	margin-bottom: 0.125rem;
 	margin-right: 0.125rem;
 	text-align: right;
+	box-shadow: 0 0.15rem 0.25rem 0rem rgba(0, 0, 0, 0.1);
 `;
 
 const IconWrapper = styled.div`
