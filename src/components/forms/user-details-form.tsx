@@ -2,12 +2,9 @@ import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
-import {
-	createExerciseMutation,
-	updateExerciseMutation,
-} from "../../gql/exercise";
+import { createUserMutation, updateUserMutation } from "../../gql/user";
 import { CenteredContentWrapper } from "../layout/";
-import { IExercise, Exercise } from "../../config/definitions";
+import { IUser, User } from "../../config/definitions";
 import { CancelButton, StartButton } from "../../components/buttons";
 import {
 	ButtonRow,
@@ -17,28 +14,26 @@ import {
 	TextInput,
 } from "../forms/components";
 
-export interface IExerciseDetailsFormProps {
-	details?: IExercise;
+export interface IUserDetailsFormProps {
+	details?: IUser;
 }
 
-export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({
-	details,
-}) => {
-	const [createExercise] = useMutation(createExerciseMutation);
-	const [updateExercise] = useMutation(updateExerciseMutation);
+export const UserDetailsForm: FC<IUserDetailsFormProps> = ({ details }) => {
+	const [createUser] = useMutation(createUserMutation);
+	const [updateUser] = useMutation(updateUserMutation);
 
-	const { handleSubmit, register, errors } = useForm<Exercise>();
+	const { handleSubmit, register, errors } = useForm<User>();
 
-	const onSubmit = async (values: IExercise) => {
+	const onSubmit = async (values: IUser) => {
 		console.log(`form values: ${JSON.stringify(values)}`);
 		const mutationOptions = {
 			variables: { ...values },
-			refetchQueries: () => ["getExerciseDetailsQuery"],
+			refetchQueries: () => ["getUserDetailsQuery"],
 		};
 		if (details) {
-			await updateExercise(mutationOptions);
+			await updateUser(mutationOptions);
 		} else {
-			await createExercise(mutationOptions);
+			await createUser(mutationOptions);
 		}
 	};
 
@@ -47,7 +42,7 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({
 		history.goBack();
 	};
 
-	const { date, description, duration, category, id, username } = details || {};
+	const { email, fullName, id, password, username } = details || {};
 
 	return (
 		<CenteredContentWrapper>
@@ -59,13 +54,18 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({
 					ref={register}
 					defaultValue={id}
 				/>
-				<TextInput
-					disabled
-					name="date"
-					required
-					ref={register}
-					defaultValue={date}
-				/>
+				<InputWrapper title="Full Name">
+					<InputLabel>
+						{`Full Name`}
+						<TextInput
+							name="fullName"
+							required
+							ref={register}
+							defaultValue={fullName}
+						/>
+						{errors.fullName && errors.fullName.message}
+					</InputLabel>
+				</InputWrapper>
 				<InputWrapper title="user">
 					<InputLabel>
 						{`user`}
@@ -79,31 +79,23 @@ export const ExerciseDetailsForm: FC<IExerciseDetailsFormProps> = ({
 					</InputLabel>
 				</InputWrapper>
 
-				<InputWrapper title="category">
+				<InputWrapper title="password">
 					<InputLabel>
-						{`category`}
-						<TextInput name="category" defaultValue={category} ref={register} />
+						{`password`}
+						<TextInput name="password" defaultValue={password} ref={register} />
 					</InputLabel>
 				</InputWrapper>
 
-				<InputWrapper title="description">
+				<InputWrapper title="email">
 					<InputLabel>
-						{`description`}
+						{`email`}
 						<TextInput
-							name="description"
+							name="email"
 							required
 							ref={register}
-							defaultValue={description}
+							defaultValue={email}
 						/>
-						{errors.description && errors.description.message}
-					</InputLabel>
-				</InputWrapper>
-
-				<InputWrapper title="duration">
-					<InputLabel>
-						{`duration`}
-						<TextInput name="duration" ref={register} defaultValue={duration} />
-						{errors.duration && errors.duration.message}
+						{errors.email && errors.email.message}
 					</InputLabel>
 				</InputWrapper>
 
