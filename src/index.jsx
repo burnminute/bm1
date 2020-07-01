@@ -5,12 +5,19 @@ import "./index.css";
 import App from "./App";
 // import store from "./app/store";
 import * as serviceWorker from "./serviceWorker";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
 	<React.StrictMode>
-		{/* <Provider store={store}> */}
-		<App />
-		{/* </Provider> */}
+		<Auth0Provider
+			domain="burnminute1.us.auth0.com"
+			clientId="JVCzJNu40JDRuFmN8HNquW4Wys3H5OWX"
+			redirectUri={window.location.origin}
+		>
+			{/* <Provider store={store}> */}
+			<App />
+			{/* </Provider> */}
+		</Auth0Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

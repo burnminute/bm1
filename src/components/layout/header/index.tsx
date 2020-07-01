@@ -4,6 +4,7 @@ import { Breadcrumb, IBreadcrumb } from "./breadcrumb";
 import { BurnminuteLogoTitle } from "./logo-title";
 import { NavMenu } from "./nav-menu";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export interface IHeader extends IBreadcrumb {
 	sectionTitle?: string;
@@ -22,17 +23,39 @@ export const ContentHeaderWrapper = styled.div`
 	background-repeat: no-repeat;
 `;
 
+const UserInfoWrapper = styled.div`
+	user-select: none;
+	display: flex;
+	flex-direction: column;
+	/* padding: 0.25rem; */
+	/* border-radius: 0.25rem;
+	background-color: rgba(251, 253, 255, 0.47);
+	border: 0.125rem solid rgba(255, 138, 0, 0.47); */
+	/* min-width: 3rem;
+	width: 3rem;
+	min-height: 3rem;
+	height: fit-content; */
+	/* height: 3rem; */
+	color: rgba(255, 255, 255, 0.75);
+	font-family: Oxygen, sans-serif;
+	font-size: 0.75rem;
+	justify-content: start;
+	text-align: center;
+	cursor: pointer;
+`;
+
 const AvatarWrapper = styled.div`
 	user-select: none;
 	display: flex;
 	flex-direction: column;
-	padding: 0.25rem;
+	padding: 0.125rem;
 	border-radius: 0.25rem;
 	background-color: rgba(251, 253, 255, 0.47);
 	border: 0.125rem solid rgba(255, 138, 0, 0.47);
 	min-width: 3rem;
 	width: 3rem;
 	min-height: 3rem;
+	/* height: fit-content; */
 	height: 3rem;
 	color: rgba(255, 255, 255, 0.75);
 	font-family: Oxygen, sans-serif;
@@ -40,6 +63,16 @@ const AvatarWrapper = styled.div`
 	justify-content: center;
 	text-align: center;
 	cursor: pointer;
+`;
+
+const AvatarLessWrapper = styled(AvatarWrapper)`
+	background-color: rgba(251, 253, 255, 0.12);
+	border: 0.125rem solid rgba(255, 138, 0, 0.17);
+`;
+
+const AvatarImage = styled.img`
+	user-select: none;
+	height: 2.75rem;
 `;
 
 const SubHeaderWrapper = styled.div`
@@ -61,16 +94,49 @@ const LogoLink = styled(Link)`
 	width: fit-content;
 `;
 
+const LoginLink = styled.div`
+	color: rgba(251, 253, 255, 0.87);
+`;
+const LogoutLink = styled(LoginLink)`
+	color: rgba(251, 253, 255, 0.67);
+`;
+
 export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
+	const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+	const handleLoginLink = () => {
+		loginWithRedirect();
+	};
+	const handleLogoutLink = () => {
+		logout();
+	};
+
+	const UserContent = isAuthenticated ? (
+		<>
+			<AvatarWrapper>
+				<AvatarImage src={user.picture} alt={user.name} />
+			</AvatarWrapper>
+			{/* <div>{user.name}</div>
+			<div>{user.email}</div> */}
+			<LogoutLink onClick={handleLogoutLink}>{`Logout`}</LogoutLink>
+		</>
+	) : (
+		<AvatarLessWrapper onClick={handleLoginLink}>
+			<LoginLink>{`Login`}</LoginLink>
+		</AvatarLessWrapper>
+	);
+
 	return (
 		<ContentHeaderWrapper>
 			<TopHeaderWrapper>
 				<LogoLink to="/">
 					<BurnminuteLogoTitle />
 				</LogoLink>
-				<AvatarWrapper>
-					<Link to="/account">{`Avatar Here`}</Link>
-				</AvatarWrapper>
+				<UserInfoWrapper>
+					{/* <AvatarWrapper> */}
+					{/* <Link to="/account">{`Avatar Here`}</Link> */}
+					{UserContent}
+					{/* </AvatarWrapper> */}
+				</UserInfoWrapper>
 			</TopHeaderWrapper>
 			<SubHeaderWrapper>
 				<Breadcrumb breadcrumbTrail={breadcrumbTrail} />
