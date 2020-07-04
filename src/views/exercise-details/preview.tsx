@@ -4,23 +4,26 @@ import styled from "styled-components";
 import { CenteredContentWrapper } from "../../components/layout";
 
 export const PreviewWrapper = styled.div`
-	background-color:white;
+	background-color: white;
 	border-radius: 0.75rem;
-	width: 67%;
-	display:flex;
-`
+	width: 100%;
+	display: flex;
+`;
 
 export interface IExercisePreview {
 	exercise?: IExercise;
 }
 
-export const ExercisePreview: FC<IExercisePreview> = ({ children, exercise }) => {
+export const ExercisePreview: FC<IExercisePreview> = ({
+	children,
+	exercise,
+}) => {
 	const description = exercise?.description;
 	return (
-		<PreviewWrapper >
+		<PreviewWrapper>
 			<CenteredContentWrapper>
 				{description || `< Select an Exercise from the list`}
 			</CenteredContentWrapper>
 		</PreviewWrapper>
-	)
-}
+	);
+};

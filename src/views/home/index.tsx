@@ -1,16 +1,23 @@
-
 import React, { FC } from "react";
-import { View } from "../../components/layout/view";
-import { IExercise } from "../../config/definitions";
+import { ContentTitle, PanelView, View } from "../../components/layout";
+import { IContent, IExercise } from "../../config/definitions";
+import { ExerciseList } from "../exercise-list/list";
 
-interface IWebserviceCommandResponse {
-	exercises: IExercise;
-}
-
+const homePanels: IContent[] = [
+	{
+		contentTitle: (
+			<ContentTitle color={"rgba(56,99,49,1)"}>{"Workout"}</ContentTitle>
+		),
+		children: <div>{`Start Workout!`}</div>,
+	},
+	{ contentTitle: "Plan", children: <ExerciseList /> },
+	{
+		contentTitle: (
+			<ContentTitle color={"rgba(49,63,99,1)"}>{"Feed"}</ContentTitle>
+		),
+		children: <div>{`Friend Feed`}</div>,
+	},
+];
 export const HomeView: FC = () => {
-	return (
-		<View contentTitle={`Home`}>
-			{`Home`}
-		</View>
-	)
-}
+	return <PanelView panels={homePanels} />;
+};

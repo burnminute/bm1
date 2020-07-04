@@ -27,15 +27,6 @@ const UserInfoWrapper = styled.div`
 	user-select: none;
 	display: flex;
 	flex-direction: column;
-	/* padding: 0.25rem; */
-	/* border-radius: 0.25rem;
-	background-color: rgba(251, 253, 255, 0.47);
-	border: 0.125rem solid rgba(255, 138, 0, 0.47); */
-	/* min-width: 3rem;
-	width: 3rem;
-	min-height: 3rem;
-	height: fit-content; */
-	/* height: 3rem; */
 	color: rgba(255, 255, 255, 0.75);
 	font-family: Oxygen, sans-serif;
 	font-size: 0.75rem;
@@ -55,7 +46,6 @@ const AvatarWrapper = styled.div`
 	min-width: 3rem;
 	width: 3rem;
 	min-height: 3rem;
-	/* height: fit-content; */
 	height: 3rem;
 	color: rgba(255, 255, 255, 0.75);
 	font-family: Oxygen, sans-serif;
@@ -131,12 +121,7 @@ export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
 				<LogoLink to="/">
 					<BurnminuteLogoTitle />
 				</LogoLink>
-				<UserInfoWrapper>
-					{/* <AvatarWrapper> */}
-					{/* <Link to="/account">{`Avatar Here`}</Link> */}
-					{UserContent}
-					{/* </AvatarWrapper> */}
-				</UserInfoWrapper>
+				<UserInfoWrapper>{UserContent}</UserInfoWrapper>
 			</TopHeaderWrapper>
 			<SubHeaderWrapper>
 				<Breadcrumb breadcrumbTrail={breadcrumbTrail} />
