@@ -14,9 +14,9 @@ interface IResponse {
 const ListWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin: 1rem;
 	overflow-x: hidden;
 	overflow-x: auto;
+	width: 100%;
 `;
 
 export const ListItemWrapper = styled.div`

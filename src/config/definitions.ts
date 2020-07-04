@@ -1,3 +1,10 @@
+import { ReactNode } from "react";
+
+export interface IContent {
+	contentTitle?: string | ReactNode;
+	children?: ReactNode;
+}
+
 export interface IDimensions {
 	width?: number;
 	height?: number;
