@@ -1,17 +1,24 @@
 import React, { FC } from "react";
 import { ContentTitle, PanelView, View } from "../../components/layout";
-import { IContent, IExercise } from "../../config/definitions";
+import { IContentPanel } from "../../components/layout/content";
+import { IExercise } from "../../config/definitions";
 import { ExerciseList } from "../exercise-list/list";
 
-const homePanels: IContent[] = [
+const homePanels: IContentPanel[] = [
 	{
+		background: "rgba(247, 255, 248, 0.93);",
 		contentTitle: (
 			<ContentTitle color={"rgba(56,99,49,1)"}>{"Workout"}</ContentTitle>
 		),
 		children: <div>{`Start Workout!`}</div>,
 	},
-	{ contentTitle: "Plan", children: <ExerciseList /> },
 	{
+		background: "rgba(255, 253, 254, 0.79);",
+		contentTitle: "Plan",
+		children: <ExerciseList />,
+	},
+	{
+		background: "rgba(245, 246, 255, 0.87);",
 		contentTitle: (
 			<ContentTitle color={"rgba(49,63,99,1)"}>{"Feed"}</ContentTitle>
 		),
