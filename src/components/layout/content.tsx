@@ -2,17 +2,12 @@ import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
 import { IContent } from "../../config//definitions";
 
-// const MenuItemWrapper = styled("div")<IRenderNavMenuProps>`
-// 	padding-top: 0.125rem;
-// 	display: ${(props) => (props.showMenu ? "flex" : "none")};
-// 	flex-direction: column;
-// `;
-
 export interface IContentWrapperProps {
 	panelCount?: number;
 }
 export interface IContentPanelWrapperProps {
-	pct?: number;
+	pctWidth?: number;
+	background?: string;
 }
 
 export const ContentWrapper = styled("div")<IContentWrapperProps>`
@@ -21,12 +16,6 @@ export const ContentWrapper = styled("div")<IContentWrapperProps>`
 	right: 2.5rem;
 	bottom: 2.5rem;
 	top: 9.5rem;
-	background: linear-gradient(
-			188.79deg,
-			rgba(241, 252, 248, 0.5) 12.88%,
-			rgba(255, 255, 255, 0) 88.9%
-		),
-		rgba(255, 255, 255, 0.74);
 	border: 0.125rem solid rgba(255, 255, 255, 0.87);
 	box-sizing: border-box;
 	border-radius: 0px 0px 0.75rem 0.75rem;
@@ -36,10 +25,17 @@ export const ContentWrapper = styled("div")<IContentWrapperProps>`
 `;
 
 export const ContentPanelWrapper = styled("div")<IContentPanelWrapperProps>`
+	background: linear-gradient(
+			188.79deg,
+			rgba(241, 252, 248, 0.5) 12.88%,
+			rgba(255, 255, 255, 0) 88.9%
+		),
+		${(props) =>
+			props.background ? props.background : "rgba(255, 255, 255, 0.74);"};
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	width: ${(props) => (props.pct ? props.pct : "100")}%;
+	width: ${(props) => (props.pctWidth ? props.pctWidth : "100")}%;
 	height: 100%;
 `;
 
@@ -65,7 +61,15 @@ export const ContentBody = styled.div`
 	overflow: hidden;
 `;
 
-export const ContentPanel: FC<IContent> = ({ children, contentTitle }) => {
+export interface IContentPanel extends IContent {
+	background?: string;
+}
+
+export const ContentPanel: FC<IContentPanel> = ({
+	background,
+	children,
+	contentTitle,
+}) => {
 	const TitleElement: ReactNode = contentTitle ? (
 		typeof contentTitle === "string" ? (
 			<ContentTitle>{contentTitle}</ContentTitle>
@@ -76,7 +80,7 @@ export const ContentPanel: FC<IContent> = ({ children, contentTitle }) => {
 		<ContentTitle />
 	);
 	return (
-		<ContentPanelWrapper>
+		<ContentPanelWrapper background={background}>
 			{TitleElement}
 			<ContentBody>{children}</ContentBody>
 		</ContentPanelWrapper>

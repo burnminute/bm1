@@ -2,7 +2,12 @@ import React, { FC } from "react";
 import { AppComponent, BackgroundColumnLeft } from "./";
 import { Header, IHeader } from "./header";
 import { IBreadcrumb } from "./header/breadcrumb";
-import { Content, ContentPanel, ContentWrapper } from "./content";
+import {
+	Content,
+	ContentPanel,
+	ContentWrapper,
+	IContentPanel,
+} from "./content";
 import { IContent } from "../../config//definitions";
 
 export interface IView extends IHeader, IBreadcrumb, IContent {}
@@ -35,8 +40,12 @@ export const PanelView: FC<IPanelView> = ({
 			<BackgroundColumnLeft />
 			<Header breadcrumbTrail={breadcrumbTrail} sectionTitle={sectionTitle} />
 			<ContentWrapper panelCount={panels.length}>
-				{panels.map((panel: IContent, index) => (
-					<ContentPanel key={index} contentTitle={panel.contentTitle}>
+				{panels.map((panel: IContentPanel, index) => (
+					<ContentPanel
+						background={panel.background}
+						key={index}
+						contentTitle={panel.contentTitle}
+					>
 						{panel.children}
 					</ContentPanel>
 				))}

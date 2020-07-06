@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { LoadingAnimation } from "../../components/layout/loading-animation";
 import { IExercise } from "../../config/definitions";
 import { getExerciseListQuery } from "../../gql/exercise";
+import { ExerciseListItem } from "./item";
 
 interface IResponse {
 	exerciseList: IExercise[];
@@ -19,12 +18,11 @@ const ListWrapper = styled.div`
 	width: 100%;
 `;
 
-export const ListItemWrapper = styled.div`
-	background-color: rgba(213, 223, 233, 0.1);
-	padding: 1rem;
-`;
+export interface IExerciseListProps {
+	onSelect?: (exercise: IExercise) => void;
+}
 
-export const ExerciseList: FC = () => {
+export const ExerciseList: FC<IExerciseListProps> = ({ onSelect }) => {
 	const { loading, error, data } = useQuery(getExerciseListQuery);
 
 	if (loading) return <LoadingAnimation />;
@@ -39,28 +37,13 @@ export const ExerciseList: FC = () => {
 
 	return (
 		<ListWrapper>
-			{data?.exerciseList?.map(
-				({
-					category,
-					date,
-					description,
-					duration,
-					id,
-					username,
-				}: IExercise) => (
-					<ListItemWrapper key={id}>
-						{id}
-						<br />
-						{category}
-						<br />
-						{username}: <Link to={`/exercises/${id}`}>{description}</Link>
-						<br />
-						{duration} {` reps`}
-						<br />
-						{date}
-					</ListItemWrapper>
-				)
-			)}
+			{data?.exerciseList?.map((exercise: IExercise) => (
+				<ExerciseListItem
+					exercise={exercise}
+					onSelect={onSelect}
+					key={exercise.id}
+				/>
+			))}
 		</ListWrapper>
 	);
 };
