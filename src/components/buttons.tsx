@@ -28,3 +28,12 @@ export const CancelButton = styled(StartButton)`
 		#5d7980;
 	border: 0.175rem solid #99ab8e;
 `;
+
+export const StartExerciseButton = styled(StartButton)`
+	width: fit-content;
+	padding: 1.5rem 2rem;
+	font-size: 2.5rem;
+	border-radius: 1.5rem;
+	border-width: 0.5rem;
+	font-weight: 900;
+`;
