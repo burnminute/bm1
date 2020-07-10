@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { ExerciseList } from "./list";
 import { ExercisePreview } from "../exercise-details/preview";
 import { PanelView, View } from "../../components/layout/view";
-import { IContent, IExercise, ILinkElement } from "../../config/definitions";
+import {
+	IContentPanel,
+	IExercise,
+	ILinkElement,
+} from "../../config/definitions";
 
 const breadcrumb: ILinkElement[] = [{ label: "Home", path: "/" }];
 
@@ -18,13 +22,15 @@ export const ExerciseListView: FC<IExerciseListViewProps> = ({
 	const handleListSelection = (selectedItem: IExercise) => {
 		setCurrentExercise(selectedItem);
 	};
-	const exercisePanels: IContent[] = [
+	const exercisePanels: IContentPanel[] = [
 		{
-			contentTitle: "Exercise List",
 			children: <ExerciseList onSelect={handleListSelection} />,
+			contentTitle: "Exercise List",
+			pctWidth: 37,
 		},
 		{
 			children: <ExercisePreview exercise={currentExercise} />,
+			pctWidth: 63,
 		},
 	];
 

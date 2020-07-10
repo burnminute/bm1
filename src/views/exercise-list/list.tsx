@@ -14,7 +14,7 @@ const ListWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	overflow-x: hidden;
-	overflow-x: auto;
+	overflow-y: auto;
 	width: 100%;
 `;
 

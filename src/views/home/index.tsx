@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { ContentTitle, PanelView, View } from "../../components/layout";
-import { IContentPanel } from "../../components/layout/content";
-import { IExercise } from "../../config/definitions";
+import { IContentPanel } from "../../config/definitions";
 import { ExerciseList } from "../exercise-list/list";
 
 const homePanels: IContentPanel[] = [

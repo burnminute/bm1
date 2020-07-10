@@ -5,6 +5,11 @@ export interface IContent {
 	children?: ReactNode;
 }
 
+export interface IContentPanel extends IContent {
+	pctWidth?: number;
+	background?: string;
+}
+
 export interface IDimensions {
 	width?: number;
 	height?: number;
@@ -20,6 +25,7 @@ export interface IExercise {
 	description: string;
 	duration?: string;
 	category?: string;
+	imageUrl?: string;
 	id?: string;
 	username: string;
 }
