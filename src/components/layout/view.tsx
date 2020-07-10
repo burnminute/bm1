@@ -2,13 +2,8 @@ import React, { FC } from "react";
 import { AppComponent, BackgroundColumnLeft } from "./";
 import { Header, IHeader } from "./header";
 import { IBreadcrumb } from "./header/breadcrumb";
-import {
-	Content,
-	ContentPanel,
-	ContentWrapper,
-	IContentPanel,
-} from "./content";
-import { IContent } from "../../config//definitions";
+import { Content, ContentPanel, ContentWrapper } from "./content";
+import { IContent, IContentPanel } from "../../config//definitions";
 
 export interface IView extends IHeader, IBreadcrumb, IContent {}
 export interface IPanelView extends IView {
@@ -43,8 +38,9 @@ export const PanelView: FC<IPanelView> = ({
 				{panels.map((panel: IContentPanel, index) => (
 					<ContentPanel
 						background={panel.background}
-						key={index}
 						contentTitle={panel.contentTitle}
+						key={index}
+						pctWidth={panel.pctWidth}
 					>
 						{panel.children}
 					</ContentPanel>

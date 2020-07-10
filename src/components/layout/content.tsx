@@ -1,13 +1,9 @@
 import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
-import { IContent } from "../../config//definitions";
+import { IContent, IContentPanel } from "../../config//definitions";
 
 export interface IContentWrapperProps {
 	panelCount?: number;
-}
-export interface IContentPanelWrapperProps {
-	pctWidth?: number;
-	background?: string;
 }
 
 export const ContentWrapper = styled("div")<IContentWrapperProps>`
@@ -24,7 +20,7 @@ export const ContentWrapper = styled("div")<IContentWrapperProps>`
 	overflow: hidden;
 `;
 
-export const ContentPanelWrapper = styled("div")<IContentPanelWrapperProps>`
+export const ContentPanelWrapper = styled("div")<IContentPanel>`
 	background: linear-gradient(
 			188.79deg,
 			rgba(241, 252, 248, 0.5) 12.88%,
@@ -61,14 +57,11 @@ export const ContentBody = styled.div`
 	overflow: hidden;
 `;
 
-export interface IContentPanel extends IContent {
-	background?: string;
-}
-
 export const ContentPanel: FC<IContentPanel> = ({
 	background,
 	children,
 	contentTitle,
+	pctWidth,
 }) => {
 	const TitleElement: ReactNode = contentTitle ? (
 		typeof contentTitle === "string" ? (
@@ -80,7 +73,7 @@ export const ContentPanel: FC<IContentPanel> = ({
 		<ContentTitle />
 	);
 	return (
-		<ContentPanelWrapper background={background}>
+		<ContentPanelWrapper background={background} pctWidth={pctWidth}>
 			{TitleElement}
 			<ContentBody>{children}</ContentBody>
 		</ContentPanelWrapper>
