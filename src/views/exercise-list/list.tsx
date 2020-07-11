@@ -20,9 +20,13 @@ const ListWrapper = styled.div`
 
 export interface IExerciseListProps {
 	onSelect?: (exercise: IExercise) => void;
+	selectedId?: string;
 }
 
-export const ExerciseList: FC<IExerciseListProps> = ({ onSelect }) => {
+export const ExerciseList: FC<IExerciseListProps> = ({
+	onSelect,
+	selectedId,
+}) => {
 	const { loading, error, data } = useQuery(getExerciseListQuery);
 
 	if (loading) return <LoadingAnimation />;
@@ -39,6 +43,7 @@ export const ExerciseList: FC<IExerciseListProps> = ({ onSelect }) => {
 		<ListWrapper>
 			{data?.exerciseList?.map((exercise: IExercise) => (
 				<ExerciseListItem
+					selected={exercise?.id === selectedId}
 					exercise={exercise}
 					onSelect={onSelect}
 					key={exercise.id}

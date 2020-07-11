@@ -1,7 +1,18 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export { PanelView, View } from "./view";
-export { Content, ContentPanel, ContentTitle } from "./content";
+export {
+	CenteredContentWrapper,
+	Content,
+	ContentPanel,
+	ContentTitle,
+} from "./content";
+export {
+	DetailsContentWrapper,
+	DetailsFooterWrapper,
+	DetailsHeaderWrapper,
+	DetailsBodyWrapper,
+} from "./details";
 
 export const BodyGlobalStyle = createGlobalStyle`
 body {
@@ -35,14 +46,4 @@ export const BackgroundColumnLeft = styled.div`
 	bottom: 1rem;
 	background: rgba(25, 26, 28, 0.37);
 	border-radius: 1rem 0px 0px 1rem;
-`;
-
-export const CenteredContentWrapper = styled.div`
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	justify-content: center;
-	position: relative;
-	width: 100%;
 `;
