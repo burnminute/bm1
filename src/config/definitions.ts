@@ -45,3 +45,11 @@ export interface IUser {
 export type UserKeys = keyof IUser;
 
 export type User = Pick<IUser, UserKeys>;
+
+export interface IListItem {
+	selected?: boolean;
+}
+
+export interface IBgColor {
+	bgColor?: string;
+}

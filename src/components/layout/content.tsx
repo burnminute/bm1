@@ -6,6 +6,16 @@ export interface IContentWrapperProps {
 	panelCount?: number;
 }
 
+export const CenteredContentWrapper = styled.div`
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+`;
+
 export const ContentWrapper = styled("div")<IContentWrapperProps>`
 	position: absolute;
 	left: 2.5rem;

@@ -9,6 +9,7 @@ import {
 	ILinkElement,
 } from "../../config/definitions";
 
+export const EXERCISE_BG_HIGHLIGHT_COLOR: string = "rgba(243, 253, 253, 0.57)";
 const breadcrumb: ILinkElement[] = [{ label: "Home", path: "/" }];
 
 export interface IExerciseListViewProps {
@@ -24,7 +25,12 @@ export const ExerciseListView: FC<IExerciseListViewProps> = ({
 	};
 	const exercisePanels: IContentPanel[] = [
 		{
-			children: <ExerciseList onSelect={handleListSelection} />,
+			children: (
+				<ExerciseList
+					onSelect={handleListSelection}
+					selectedId={currentExercise?.id}
+				/>
+			),
 			contentTitle: "Exercise List",
 			pctWidth: 37,
 		},
