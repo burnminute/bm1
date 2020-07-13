@@ -46,6 +46,20 @@ export type UserKeys = keyof IUser;
 
 export type User = Pick<IUser, UserKeys>;
 
+export interface IPlan {
+	active: boolean;
+	category?: string;
+	dateEnd?: string;
+	dateStart: string;
+	description?: string;
+	exercises?: IExercise[];
+	frequency?: string; // need IFrequency
+	id?: string;
+	title: string;
+	privacy: string; // need IPrivacy
+	userId: string;
+}
+
 export interface IListItem {
 	selected?: boolean;
 }

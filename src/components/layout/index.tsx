@@ -12,6 +12,7 @@ export {
 	DetailsFooterWrapper,
 	DetailsHeaderWrapper,
 	DetailsBodyWrapper,
+	DetailsTextWrapper,
 } from "./details";
 
 export const BodyGlobalStyle = createGlobalStyle`
