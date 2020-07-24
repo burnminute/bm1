@@ -5,7 +5,7 @@ import { CenteredContentWrapper } from "../layout/";
 export const DetailsContentWrapper = styled(CenteredContentWrapper)`
 	background-color: rgba(251, 253, 255, 0.37);
 	border-radius: 0.5rem;
-	justify-content: flex-start;
+	justify-content: space-between;
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding: 1rem 2rem;
@@ -37,10 +37,23 @@ export const DetailsHeaderWrapper = styled(DetailsFooterWrapper)`
 export const DetailsBodyWrapper = styled(DetailsContentWrapper)`
 	background-color: rgba(251, 253, 255, 0.17);
 	border-radius: 0;
+	flex-direction: row;
 	font-family: Quantico, sans-serif;
 	font-size: 1.5rem;
+	height: unset;
+	justify-content: space-between;
 	margin: 0;
 	padding: 0 1rem;
 	text-align: center;
 	width: 100%;
+`;
+
+export const DetailsTextWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: flex-start;
+	padding: 0 1rem 0 0;
+	width: 100%;
+	text-overflow: ellipsis;
 `;

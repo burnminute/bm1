@@ -7,6 +7,7 @@ import {
 	DetailsContentWrapper,
 	DetailsFooterWrapper,
 	DetailsHeaderWrapper,
+	DetailsTextWrapper,
 } from "../../components/layout";
 import { StartExerciseButton } from "../../components/buttons";
 import { EXERCISE_BG_HIGHLIGHT_COLOR } from "../exercise-list";
@@ -25,13 +26,13 @@ const PreviewWrapper = styled.div<IBgColor>`
 
 const PreviewImage = styled.img`
 	border-radius: 0.5rem;
-	height: 11rem;
+	width: 60%;
 `;
 
 const PreviewDescription = styled.div`
 	color: rgba(50, 130, 148, 0.87);
 	padding: 1rem 0.5rem 0.5rem 0.5rem;
-	width: 100%;
+	/* width: 100%; */
 	text-align: left;
 	font-size: 2.5rem;
 `;
@@ -62,12 +63,14 @@ export const PreviewContent: FC<IExercise> = (exercise) => {
 				{exercise?.category || "Exercise"}
 			</DetailsHeaderWrapper>
 			<DetailsBodyWrapper>
+				<DetailsTextWrapper>
+					<PreviewDescription>{exercise?.description}</PreviewDescription>
+					<PreviewDuration>{exercise?.duration}</PreviewDuration>
+				</DetailsTextWrapper>
 				<PreviewImage
 					src={exercise?.imageUrl || DEFAULT_IMAGE_URL}
 					alt={exercise?.description}
 				/>
-				<PreviewDescription>{exercise?.description}</PreviewDescription>
-				<PreviewDuration>{exercise?.duration}</PreviewDuration>
 			</DetailsBodyWrapper>
 			<DetailsFooterWrapper>
 				<PreviewStartExerciseButton>{`go!`}</PreviewStartExerciseButton>

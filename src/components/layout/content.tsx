@@ -63,7 +63,7 @@ export const ContentBody = styled.div`
 	display: flex;
 	flex-direction: row;
 	height: 100%;
-	padding: 1.5rem;
+	padding: 0.5rem;
 	overflow: hidden;
 `;
 
