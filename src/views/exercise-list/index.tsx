@@ -27,7 +27,7 @@ export const ExerciseListView: FC<IExerciseListViewProps> = ({
 		{
 			children: (
 				<ExerciseList
-					onSelect={handleListSelection}
+					onSelectExercise={handleListSelection}
 					selectedId={currentExercise?.id}
 				/>
 			),
