@@ -1,7 +1,7 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import { IBgColor, IExercise } from "../../config/definitions";
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
 import {
 	CenteredContentWrapper,
 	DetailsBodyWrapper,
@@ -10,13 +10,12 @@ import {
 	DetailsHeaderWrapper,
 	DetailsTextWrapper,
 } from "../../components/layout";
-import { StartExerciseButton } from "../../components/buttons";
-import { EditIcon } from "../../components/icons/edit";
+import { StopExerciseButton } from "../../components/buttons";
 import { EXERCISE_BG_HIGHLIGHT_COLOR } from "../exercise-list";
 
 // import randomRgba from "random-rgba";
 
-const PreviewWrapper = styled.div<IBgColor>`
+const PlayWrapper = styled.div<IBgColor>`
 	border-radius: 0.75rem;
 	background-color: ${(props) =>
 		props?.bgColor ? props.bgColor : `rgba(251, 253, 255, 0.37)`};
@@ -26,26 +25,26 @@ const PreviewWrapper = styled.div<IBgColor>`
 	padding: 1rem 3rem;
 `;
 
-const PreviewImage = styled.img`
+const PlayImage = styled.img`
 	border-radius: 0.5rem;
 	width: 60%;
 `;
 
-const PreviewDescription = styled.div`
+const PlayDescription = styled.div`
 	color: rgba(50, 130, 148, 0.87);
 	padding: 1rem 0.5rem 0.5rem 0.5rem;
 	/* width: 100%; */
 	text-align: left;
 	font-size: 2.5rem;
 `;
-const PreviewDuration = styled(PreviewDescription)`
+const PlayDuration = styled(PlayDescription)`
 	padding: 0 1.5rem;
 	font-size: 1.5rem;
 	color: rgba(0, 15, 18, 0.87);
 	width: 87%;
 `;
 
-const PreviewStartExerciseButton = styled(StartExerciseButton)`
+const StopButton = styled(StopExerciseButton)`
 	padding: 2rem 4rem;
 	font-size: 3rem;
 `;
@@ -58,13 +57,11 @@ const handleExerciseStart = () => {
 	// Route to exercise action page.
 };
 
-export interface IExercisePreview {
+export interface IExercisePlay {
 	exercise?: IExercise;
 }
 
-export const PreviewContent: FC<IExercise> = (exercise) => {
-	const { pathname } = useLocation();
-
+export const PlayContent: FC<IExercise> = (exercise) => {
 	return (
 		<DetailsContentWrapper>
 			<DetailsHeaderWrapper>
@@ -72,45 +69,32 @@ export const PreviewContent: FC<IExercise> = (exercise) => {
 			</DetailsHeaderWrapper>
 			<DetailsBodyWrapper>
 				<DetailsTextWrapper>
-					<PreviewDescription>{exercise?.description}</PreviewDescription>
-					<PreviewDuration>{exercise?.duration}</PreviewDuration>
-					<Link to={`/exercises/${exercise?.id}/edit`} title="Edit">
-						<EditIcon />
-					</Link>
+					<PlayDescription>{exercise?.description}</PlayDescription>
+					<PlayDuration>{exercise?.duration}</PlayDuration>
 				</DetailsTextWrapper>
-				<PreviewImage
+				<PlayImage
 					src={exercise?.imageUrl || DEFAULT_IMAGE_URL}
 					alt={exercise?.description}
 				/>
 			</DetailsBodyWrapper>
 			<DetailsFooterWrapper>
-				<Link
-					to={`/exercises/${exercise?.id}/start`}
-					title="Start this exercise!"
-				>
-					<PreviewStartExerciseButton
-						onClick={handleExerciseStart}
-					>{`go!`}</PreviewStartExerciseButton>
+				<Link to={`/exercises/${exercise?.id}`} title="Stop">
+					<StopButton onClick={handleExerciseStart}>{`stop!`}</StopButton>
 				</Link>
 			</DetailsFooterWrapper>
 		</DetailsContentWrapper>
 	);
 };
 
-export const ExercisePreview: FC<IExercisePreview> = ({
-	children,
-	exercise,
-}) => {
+export const ExercisePlay: FC<IExercisePlay> = ({ children, exercise }) => {
 	const previewContent = exercise ? (
-		<PreviewContent {...exercise} />
+		<PlayContent {...exercise} />
 	) : (
-		`Select an Exercise from the list`
+		`Oops, that exercise wasn't found`
 	);
 	return (
-		<PreviewWrapper
-			bgColor={exercise ? EXERCISE_BG_HIGHLIGHT_COLOR : undefined}
-		>
+		<PlayWrapper bgColor={exercise ? EXERCISE_BG_HIGHLIGHT_COLOR : undefined}>
 			<CenteredContentWrapper>{previewContent}</CenteredContentWrapper>
-		</PreviewWrapper>
+		</PlayWrapper>
 	);
 };
