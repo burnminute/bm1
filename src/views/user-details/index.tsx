@@ -9,7 +9,7 @@ import { LoadingAnimation } from "../../components/layout/loading-animation";
 import { getUserDetailsQuery } from "../../gql/user";
 
 const DetailsTitle = styled.div`
-	font-family: Quantico;
+	font-family: Quantico, sans-serif;
 	font-style: normal;
 	font-weight: bold;
 	font-size: 1.75rem;
@@ -19,7 +19,7 @@ const DetailsTitle = styled.div`
 `;
 
 const DetailsDuration = styled.div`
-	font-family: Quantico;
+	font-family: Quantico, sans-serif;
 	font-style: normal;
 	font-weight: normal;
 	font-size: 1.5rem;

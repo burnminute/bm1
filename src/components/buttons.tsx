@@ -37,3 +37,13 @@ export const StartExerciseButton = styled(StartButton)`
 	border-width: 0.5rem;
 	font-weight: 900;
 `;
+
+export const StopExerciseButton = styled(StartExerciseButton)`
+	background: linear-gradient(
+			192.34deg,
+			rgba(255, 255, 255, 0.45) 22.72%,
+			rgba(255, 255, 255, 0) 73.92%
+		),
+		red;
+	border: 0.175rem solid darkred;
+`;

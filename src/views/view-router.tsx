@@ -18,12 +18,17 @@ export const ViewRouter = () => {
 				<Route path="/users/:id/edit/" component={UserDetailsViewEdit} />
 				<Route path="/users/create" component={UserDetailsViewEdit} />
 				<Route path="/exercises" exact component={ExerciseListView} />
+				{/* <Route
+					path="/exercises/create"
+					exact
+					component={ExerciseDetailsViewEdit}
+				/> */}
 				<Route path="/exercises/:id" exact component={ExerciseDetailsView} />
 				<Route
-					path="/exercises/:id/edit/"
-					component={ExerciseDetailsViewEdit}
+					path="/exercises/:id/:action"
+					exact
+					component={ExerciseDetailsView}
 				/>
-				<Route path="/exercises/create" component={ExerciseDetailsViewEdit} />
 				{/* <Route path="/user" component={UserDetails} /> */}
 			</Switch>
 		</Router>
