@@ -10,24 +10,19 @@ export const CenteredContentWrapper = styled.div`
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	justify-content: center;
-	position: relative;
 	width: 100%;
 `;
 
 export const ContentWrapper = styled("div")<IContentWrapperProps>`
-	position: absolute;
-	left: 2.5rem;
-	right: 2.5rem;
-	bottom: 2.5rem;
-	top: 9.5rem;
 	border: 0.125rem solid rgba(255, 255, 255, 0.87);
-	box-sizing: border-box;
 	border-radius: 0px 0px 0.75rem 0.75rem;
 	display: flex;
 	flex-direction: ${(props) => (props.panelCount ? "row" : "column")};
 	overflow: hidden;
+	margin: 0.4rem;
+	z-index: 0;
+	height: 100%;
 `;
 
 export const ContentPanelWrapper = styled("div")<IContentPanel>`
@@ -52,7 +47,6 @@ export interface IContentTitleProps {
 export const ContentTitle = styled("div")<IContentTitleProps>`
 	font-family: Rubik, sans-serif;
 	font-size: 1.25rem;
-	position: relative;
 	padding: 0.75rem 1.75rem 0rem 1.5rem;
 	height: 2.5rem;
 	background-color: rgba(251, 253, 255, 0.37);
@@ -62,9 +56,10 @@ export const ContentTitle = styled("div")<IContentTitleProps>`
 export const ContentBody = styled.div`
 	display: flex;
 	flex-direction: row;
-	height: 100%;
 	padding: 0.5rem;
 	overflow: hidden;
+	justify-content: center;
+	height: 100%;
 `;
 
 export const ContentPanel: FC<IContentPanel> = ({
@@ -93,7 +88,9 @@ export const ContentPanel: FC<IContentPanel> = ({
 export const Content: FC<IContent> = ({ children, contentTitle }) => {
 	return (
 		<ContentWrapper>
-			<ContentPanel contentTitle={contentTitle}>{children}</ContentPanel>
+			<ContentPanel contentTitle={contentTitle}>
+				<>{children}</>
+			</ContentPanel>
 		</ContentWrapper>
 	);
 };

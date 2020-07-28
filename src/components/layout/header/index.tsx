@@ -13,14 +13,12 @@ export interface IHeader extends IBreadcrumb {
 export const ContentHeaderWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	position: absolute;
-	height: 9rem;
-	left: 2.5rem;
-	right: 2.5rem;
-	top: 2rem;
+	height: 8.5rem;
 	background-color: transparent;
 	background-image: url("./images/burnminute-logo-title.png");
 	background-repeat: no-repeat;
+	padding: 0.4rem;
+	z-index: 1;
 `;
 
 const UserInfoWrapper = styled.div`
@@ -66,7 +64,7 @@ const AvatarImage = styled.img`
 `;
 
 const SubHeaderWrapper = styled.div`
-	padding: 0.75rem 0rem 0rem 0rem;
+	padding: 0.5rem 0rem 0rem 0rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -105,8 +103,6 @@ export const Header: FC<IHeader> = ({ breadcrumbTrail, sectionTitle }) => {
 			<AvatarWrapper>
 				<AvatarImage src={user.picture} alt={user.name} />
 			</AvatarWrapper>
-			{/* <div>{user.name}</div>
-			<div>{user.email}</div> */}
 			<LogoutLink onClick={handleLogoutLink}>{`Logout`}</LogoutLink>
 		</>
 	) : (

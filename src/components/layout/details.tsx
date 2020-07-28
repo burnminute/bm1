@@ -51,7 +51,6 @@ export const DetailsBodyWrapper = styled(DetailsContentWrapper)`
 export const DetailsTextWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	justify-content: flex-start;
 	padding: 0 1rem 0 0;
 	width: 100%;

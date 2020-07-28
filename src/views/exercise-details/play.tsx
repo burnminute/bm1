@@ -12,6 +12,7 @@ import {
 } from "../../components/layout";
 import { StopExerciseButton } from "../../components/buttons";
 import { EXERCISE_BG_HIGHLIGHT_COLOR } from "../exercise-list";
+import { asyncFunctionDelay } from "async-function-delay";
 
 // import randomRgba from "random-rgba";
 
@@ -20,14 +21,14 @@ const PlayWrapper = styled.div<IBgColor>`
 	background-color: ${(props) =>
 		props?.bgColor ? props.bgColor : `rgba(251, 253, 255, 0.37)`};
 	border: 0.25rem solid rgba(251, 253, 255, 0.67);
-	width: 100%;
 	display: flex;
 	padding: 1rem 3rem;
+	max-height: 94%;
 `;
 
 const PlayImage = styled.img`
 	border-radius: 0.5rem;
-	width: 60%;
+	width: 20rem;
 `;
 
 const PlayDescription = styled.div`
@@ -54,6 +55,24 @@ const DEFAULT_IMAGE_URL =
 	"https://static6.depositphotos.com/1003098/570/i/450/depositphotos_5703104-stock-photo-jumping-jacks.jpg";
 
 const handleExerciseStart = () => {
+	const myFunction = (greeting: string, name: string) => {
+		return `${greeting}, from ${name}!`;
+	};
+
+	const myGreeting = "Hello";
+	const myName = "Me";
+
+	const myDelayedFunctionCaller = async () => {
+		const myDelayedResult = await asyncFunctionDelay(
+			myFunction,
+			2000,
+			myGreeting,
+			myName
+		);
+		console.log(myDelayedResult);
+	};
+	myDelayedFunctionCaller();
+
 	// Route to exercise action page.
 };
 
