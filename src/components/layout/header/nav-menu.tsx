@@ -27,8 +27,8 @@ const NavMenuWrapper = styled.div`
 	overflow: hidden;
 	z-index: 100;
 	position: absolute;
-	right: 0rem;
-	top: 5.05rem;
+	right: 1.4rem;
+	top: 6.25rem;
 	width: 11.5rem;
 `;
 
@@ -75,6 +75,10 @@ const MenuItemWrapper = styled("div")<IRenderNavMenuProps>`
 	padding-top: 0.125rem;
 	display: ${(props) => (props.showMenu ? "flex" : "none")};
 	flex-direction: column;
+	/* position: absolute;
+	top: 8.5rem;
+	right: 4.25rem;
+	z-index: 101; */
 `;
 
 const SectionTitle = styled.div`
@@ -100,19 +104,21 @@ export const NavMenu: FC<INavMenu> = ({ navMenuItems = [], currentTitle }) => {
 					<NavMenuToggleIcon />
 				</IconWrapper>
 			</NavTitleWrapper>
-			<MenuItemWrapper
-				showMenu={menuVisibility}
-				navMenuItems={navMenuItems}
-				handleMenuToggle={handleMenuToggle}
-			>
-				{(navMenuItems || []).map(({ label, path }, index) => {
-					return (
-						<NavMenuLink to={path} key={index} title={label}>
-							<NavMenuItem onClick={handleMenuToggle}>{label}</NavMenuItem>
-						</NavMenuLink>
-					);
-				})}
-			</MenuItemWrapper>
+			{menuVisibility && (
+				<MenuItemWrapper
+					showMenu
+					navMenuItems={navMenuItems}
+					handleMenuToggle={handleMenuToggle}
+				>
+					{(navMenuItems || []).map(({ label, path }, index) => {
+						return (
+							<NavMenuLink to={path} key={index} title={label}>
+								<NavMenuItem onClick={handleMenuToggle}>{label}</NavMenuItem>
+							</NavMenuLink>
+						);
+					})}
+				</MenuItemWrapper>
+			)}
 		</NavMenuWrapper>
 	);
 };

@@ -35,6 +35,7 @@ const BreadcrumbDivider = styled.div`
 const BreadcrumbWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
+	height: 1.5rem;
 	overflow: hidden;
 `;
 

@@ -2901,6 +2901,11 @@ async-each@^1.0.1:
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.3.tgz#b727dbf87d7651602f06f4d4ac387f47d91b0cbf"
   integrity sha512-z/WhQ5FPySLdvREByI2vZiTWwCnF0moMJ1hK9YQwDTHKh6I7/uSckMetoRGb5UBZPC1z0jlw+n/XCgjeH7y1AQ==
 
+async-function-delay@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/async-function-delay/-/async-function-delay-2.0.0.tgz#87e85c4f93ebfe3287036d780ca86207e896958a"
+  integrity sha512-kU12G4GCGlggTrs2b/5uQoxNKMQr9N9isN67miDbruXlGJC39YUqo/5TcqDy62MK/3RB04WfbSCc4JDpWuC94g==
+
 async-limiter@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"

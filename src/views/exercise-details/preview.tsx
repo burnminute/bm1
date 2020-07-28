@@ -21,9 +21,9 @@ const PreviewWrapper = styled.div<IBgColor>`
 	background-color: ${(props) =>
 		props?.bgColor ? props.bgColor : `rgba(251, 253, 255, 0.37)`};
 	border: 0.25rem solid rgba(251, 253, 255, 0.67);
-	width: 100%;
 	display: flex;
 	padding: 1rem 3rem;
+	max-height: 94%;
 `;
 
 const PreviewImage = styled.img`
