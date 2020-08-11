@@ -71,14 +71,16 @@ export interface IExercisePreview {
 
 export const PreviewContent: FC<IExercise> = (exercise) => {
 	const { pathname } = useLocation();
-	const nextActivityStartTime =
-		30 * 60 * 1000 - useRecoilValue(elapsedTimeState);
+	const now = new Date().getTime();
+	const elapsedTime = now - useRecoilValue(activityTimerState);
+	const nextActivityStartTime = 30 * 60 * 1000 - elapsedTime;
 
 	return (
 		<DetailsContentWrapper>
 			<DetailsHeaderWrapper>
 				{exercise?.category || "Exercise"}
 			</DetailsHeaderWrapper>
+			<div>{`Elapsed ...${elapsedTime}`}</div>
 			{`Next activity starts in ...`}
 			<Timer fullTime={nextActivityStartTime} />
 			<DetailsBodyWrapper>
