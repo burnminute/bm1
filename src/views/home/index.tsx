@@ -35,6 +35,7 @@ const getHomePanels = (
 ];
 
 export const HomeView: FC = () => {
+	// TODO: update to use recoil
 	const [currentExercise, setCurrentExercise] = useState<IExercise>();
 	const handleExerciseSelection = (selectedItem: IExercise) => {
 		setCurrentExercise(selectedItem);

@@ -1,12 +1,16 @@
 import { Duration } from "luxon";
 import React, { FC, useEffect, useRef, useState } from "react";
 
-const TIME_UNIT: number = 1000;
-const DEFAULT_FORMAT: string = "hh:mm:ss";
+const TIMER_MS_UNIT: number = 1000;
+const HOUR_IN_MS: number = 60 * 60 * 1000;
+const DEFAULT_FORMAT_HOURS: string = "hh:mm:ss";
+const DEFAULT_FORMAT_MINUTES: string = "mm:ss";
 
 const formatTime = (
 	milliseconds: number,
-	format: string = DEFAULT_FORMAT
+	format: string = milliseconds > HOUR_IN_MS
+		? DEFAULT_FORMAT_HOURS
+		: DEFAULT_FORMAT_MINUTES
 ): string => Duration.fromObject({ milliseconds }).toFormat(format);
 
 export interface ITimer {
@@ -21,14 +25,14 @@ export const Timer: FC<ITimer> = ({ fullTime, component, handleComplete }) => {
 
 	useEffect(() => {
 		const timerIntervalID = setInterval(() => {
-			setCurrentTime(currentTime - TIME_UNIT);
-			if (currentTime <= TIME_UNIT) {
+			setCurrentTime(currentTime - TIMER_MS_UNIT);
+			if (currentTime <= TIMER_MS_UNIT) {
 				clearTimer();
 				if (handleComplete) {
 					handleComplete();
 				}
 			}
-		}, TIME_UNIT);
+		}, TIMER_MS_UNIT);
 
 		timer.current = timerIntervalID;
 		return () => clearTimer();

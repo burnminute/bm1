@@ -1,7 +1,14 @@
 import React, { FC } from "react";
 import { IBgColor, IExercise } from "../../config/definitions";
+import {
+	activityTimerState,
+	elapsedTimeState,
+} from "../../config/recoil-state";
+import { Timer } from "../../components/timer";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+
 import {
 	CenteredContentWrapper,
 	DetailsBodyWrapper,
@@ -64,12 +71,16 @@ export interface IExercisePreview {
 
 export const PreviewContent: FC<IExercise> = (exercise) => {
 	const { pathname } = useLocation();
+	const nextActivityStartTime =
+		30 * 60 * 1000 - useRecoilValue(elapsedTimeState);
 
 	return (
 		<DetailsContentWrapper>
 			<DetailsHeaderWrapper>
 				{exercise?.category || "Exercise"}
 			</DetailsHeaderWrapper>
+			{`Next activity starts in ...`}
+			<Timer fullTime={nextActivityStartTime} />
 			<DetailsBodyWrapper>
 				<DetailsTextWrapper>
 					<PreviewDescription>{exercise?.description}</PreviewDescription>
