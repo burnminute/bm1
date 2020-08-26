@@ -6,14 +6,20 @@ import { ExercisePreview } from "../exercise-details/preview";
 
 const getHomePanels = (
 	handleExerciseSelection: (selectedItem: IExercise) => void,
-	currentExercise?: IExercise
+	currentExercise?: IExercise,
+	handleTimerEnd?: any
 ): IContentPanel[] => [
 	{
 		background: "rgba(247, 255, 248, 0.93);",
 		contentTitle: (
 			<ContentTitle color={"rgba(56,99,49,1)"}>{"Workout"}</ContentTitle>
 		),
-		children: <ExercisePreview exercise={currentExercise} />,
+		children: (
+			<ExercisePreview
+				exercise={currentExercise}
+				handleExerciseComplete={handleTimerEnd}
+			/>
+		),
 	},
 	{
 		background: "rgba(255, 253, 254, 0.79);",
@@ -22,6 +28,7 @@ const getHomePanels = (
 			<ExerciseList
 				autoSelectFirstItem
 				onSelectExercise={handleExerciseSelection}
+				selectedId={currentExercise?.id}
 			/>
 		),
 	},
@@ -40,9 +47,18 @@ export const HomeView: FC = () => {
 	const handleExerciseSelection = (selectedItem: IExercise) => {
 		setCurrentExercise(selectedItem);
 	};
+
+	// TODO: fix this callback, not showing as a Fn
+	const handleTimerEnd = () => {
+		console.log("HOME - select next exercise");
+	};
 	return (
 		<PanelView
-			panels={getHomePanels(handleExerciseSelection, currentExercise)}
+			panels={getHomePanels(
+				handleExerciseSelection,
+				currentExercise,
+				handleTimerEnd
+			)}
 		/>
 	);
 };
