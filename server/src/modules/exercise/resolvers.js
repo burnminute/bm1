@@ -33,7 +33,7 @@ const resolvers = {
 			return newExercise.save();
 		},
 		updateExercise: async (parent, exercise) => {
-			console.log(`\nresolver values: ${JSON.stringify(exercise)}`);
+			// console.log(`\nresolver values: ${JSON.stringify(exercise)}`);
 
 			const { id, username, description, duration, category, date } = exercise;
 

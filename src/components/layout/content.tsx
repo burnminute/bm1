@@ -46,7 +46,7 @@ export interface IContentTitleProps {
 
 export const ContentTitle = styled("div")<IContentTitleProps>`
 	font-family: Rubik, sans-serif;
-	font-size: 1.25rem;
+	font-size: 1.5rem;
 	padding: 0.75rem 1.75rem 0rem 1.5rem;
 	height: 2.5rem;
 	background-color: rgba(251, 253, 255, 0.37);

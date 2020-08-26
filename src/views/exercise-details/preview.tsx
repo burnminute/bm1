@@ -1,7 +1,15 @@
 import React, { FC } from "react";
 import { IBgColor, IExercise } from "../../config/definitions";
+import {
+	activityTimerState,
+	elapsedTimeState,
+} from "../../config/recoil-state";
+import { DateTimeUnits } from "../../config/defaults";
+import { Timer } from "../../components/timer";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+
 import {
 	CenteredContentWrapper,
 	DetailsBodyWrapper,
@@ -60,16 +68,30 @@ const handleExerciseStart = () => {
 
 export interface IExercisePreview {
 	exercise?: IExercise;
+	handleExerciseComplete?(): any;
 }
 
-export const PreviewContent: FC<IExercise> = (exercise) => {
+export const PreviewContent: FC<IExercise> = (
+	exercise,
+	handleExerciseComplete
+) => {
 	const { pathname } = useLocation();
+	const now = new Date().getTime();
+	// Get the elapsed time stored in app state (Recoil) for consistent rendering across views.
+	const elapsedTime = now - useRecoilValue(activityTimerState);
+	const nextActivityLength = 0.1 * DateTimeUnits.Minute - elapsedTime;
 
 	return (
 		<DetailsContentWrapper>
 			<DetailsHeaderWrapper>
 				{exercise?.category || "Exercise"}
 			</DetailsHeaderWrapper>
+			{/* <div>{`Elapsed ...${elapsedTime}`}</div> */}
+			{`Next activity starts in ...`}
+			<Timer
+				fullTime={nextActivityLength}
+				handleComplete={handleExerciseComplete}
+			/>
 			<DetailsBodyWrapper>
 				<DetailsTextWrapper>
 					<PreviewDescription>{exercise?.description}</PreviewDescription>
@@ -100,6 +122,7 @@ export const PreviewContent: FC<IExercise> = (exercise) => {
 export const ExercisePreview: FC<IExercisePreview> = ({
 	children,
 	exercise,
+	handleExerciseComplete,
 }) => {
 	const previewContent = exercise ? (
 		<PreviewContent {...exercise} />

@@ -48,7 +48,7 @@ const resolvers = {
 			return newPlan.save();
 		},
 		updatePlan: async (parent, plan) => {
-			console.log(`\nresolver values: ${JSON.stringify(plan)}`);
+			// console.log(`\nresolver values: ${JSON.stringify(plan)}`);
 
 			const {
 				active,

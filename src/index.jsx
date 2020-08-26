@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { RecoilRoot } from "recoil";
 // import { Provider } from "react-redux";
 import App from "./App";
 // import store from "./app/store";
@@ -14,9 +14,11 @@ ReactDOM.render(
 			clientId="JVCzJNu40JDRuFmN8HNquW4Wys3H5OWX"
 			redirectUri={window.location.origin}
 		>
-			{/* <Provider store={store}> */}
-			<App />
-			{/* </Provider> */}
+			<RecoilRoot>
+				{/* <Provider store={store}> */}
+				<App />
+				{/* </Provider> */}
+			</RecoilRoot>
 		</Auth0Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
